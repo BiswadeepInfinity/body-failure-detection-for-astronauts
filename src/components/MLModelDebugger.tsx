@@ -52,6 +52,17 @@ export const MLModelDebugger: React.FC<Props> = ({ astronauts }) => {
   const evalResult = mlEngine.evaluateReading(currentReading);
   const params = mlEngine.getModelParameters();
 
+  const handleTogglePlayback = () => {
+    if (isPlaying) {
+      setIsPlaying(false);
+    } else {
+      if (dayStep >= 30) {
+        setDayStep(1);
+      }
+      setIsPlaying(true);
+    }
+  };
+
   // Playback timer
   useEffect(() => {
     let t: any = null;
@@ -64,7 +75,7 @@ export const MLModelDebugger: React.FC<Props> = ({ astronauts }) => {
           }
           return prev + 1;
         });
-      }, 700);
+      }, 500);
     }
     return () => clearInterval(t);
   }, [isPlaying]);
@@ -351,7 +362,7 @@ export const MLModelDebugger: React.FC<Props> = ({ astronauts }) => {
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <button 
               className="btn-primary"
-              onClick={() => setIsPlaying(!isPlaying)}
+              onClick={handleTogglePlayback}
               style={{ background: isPlaying ? '#ef4444' : '#38bdf8', color: '#000', padding: '6px 14px', fontSize: 12, fontWeight: 700, borderRadius: 6, display: 'flex', alignItems: 'center', gap: 6 }}
             >
               <Play size={13} fill="#000" />

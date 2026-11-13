@@ -57,6 +57,19 @@ export const AdaptiveMLScreen: React.FC<Props> = ({ astronauts }) => {
 
   const latestEvaluation = evaluationTimeline[evaluationTimeline.length - 1] || mlEngine.evaluateReading(astronaut.history[0]);
 
+  // Handle Replay / Play / Pause click
+  const handleTogglePlayback = () => {
+    if (isPlaying) {
+      setIsPlaying(false);
+    } else {
+      // If already at Day 30, reset to Day 1 so the replay actually runs from the beginning!
+      if (currentDayScrub >= 30) {
+        setCurrentDayScrub(1);
+      }
+      setIsPlaying(true);
+    }
+  };
+
   // Handle auto-playback simulation
   React.useEffect(() => {
     let interval: any = null;
@@ -69,7 +82,7 @@ export const AdaptiveMLScreen: React.FC<Props> = ({ astronauts }) => {
           }
           return prev + 1;
         });
-      }, 600);
+      }, 500);
     }
     return () => clearInterval(interval);
   }, [isPlaying]);
@@ -273,7 +286,7 @@ export const AdaptiveMLScreen: React.FC<Props> = ({ astronauts }) => {
               <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                 <button 
                   className="btn-primary"
-                  onClick={() => setIsPlaying(!isPlaying)}
+                  onClick={handleTogglePlayback}
                   style={{ background: isPlaying ? 'rgba(239, 68, 68, 0.25)' : 'rgba(255, 255, 255, 0.15)', color: '#fff' }}
                 >
                   <Play size={14} fill="#fff" />
