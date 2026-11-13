@@ -56,8 +56,8 @@ body.dark-space-theme {
     radial-gradient(circle at 100% 100%, rgba(20, 28, 48, 0.25) 0%, transparent 55%);
   color: var(--text-main);
   font-family: var(--font-sans);
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 16px;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
 }
@@ -274,31 +274,31 @@ body.dark-space-theme {
   background: rgba(12, 17, 28, 0.5);
   backdrop-filter: blur(12px);
   border: 1px solid var(--border-glass);
-  border-radius: 14px;
-  padding: 16px 18px;
+  border-radius: 16px;
+  padding: 20px 22px;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .metric-label {
-  font-size: 12px;
+  font-size: 13.5px;
   color: var(--text-secondary);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.6px;
   font-weight: 600;
 }
 
 .metric-val {
-  font-size: 26px;
+  font-size: 32px;
   font-weight: 700;
   color: #ffffff;
   font-family: var(--font-mono);
-  margin-top: 4px;
+  margin-top: 6px;
 }
 
 .metric-sub {
-  font-size: 12px;
+  font-size: 13.5px;
   color: var(--text-muted);
-  margin-top: 4px;
+  margin-top: 6px;
 }
 
 /* Liquid Glass Buttons with Rounded Pill Corners */

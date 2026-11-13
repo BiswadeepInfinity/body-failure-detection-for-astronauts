@@ -7,6 +7,7 @@ interface TermExplanation {
   doctorTranslation: string;
   plainEnglishExplanation: string;
   whyItMattersInSpace: string;
+  clinicalExample: string;
 }
 
 export const ML_GLOSSARY: Record<string, TermExplanation> = {
@@ -14,43 +15,49 @@ export const ML_GLOSSARY: Record<string, TermExplanation> = {
     mlTerm: 'True Mahalanobis Distance',
     mathSymbol: 'D_M',
     doctorTranslation: 'Multi-Organ Deviation Index',
-    plainEnglishExplanation: 'Measures how far an astronaut\'s combined vital signs have shifted away from their healthy baseline, taking into account how biometrics naturally fluctuate together.',
-    whyItMattersInSpace: 'If a heart rate of 78 bpm happens during intense exercise, it is completely normal. But if that same 78 bpm happens while resting and accompanied by 4.2 hours of fragmented sleep, the combined pattern signals an early bodily breakdown before single-variable alarms trigger.'
+    plainEnglishExplanation: 'Measures how far an astronaut\'s combined vital signs (sleep, heart rate, stress, and mood) have drifted away from their healthy baseline. Rather than looking at heart rate or sleep in isolation, it calculates the distance across all 5 biometrics simultaneously while accounting for how they naturally fluctuate together in zero gravity.',
+    whyItMattersInSpace: 'In deep space, single vitals fluctuate constantly due to fluid shifts and routine spacewalk fatigue. Traditional alarms create alert fatigue with constant false alarms. The Mahalanobis metric only triggers when multiple systems decouple in a physiologically dangerous pattern.',
+    clinicalExample: 'If heart rate climbs to 78 bpm during EVA exercise, D_M stays low (<1.8σ, nominal). But if that same 78 bpm occurs during sleep alongside a 4.2-hour sleep window and high sympathetic stress, D_M jumps above 3.2σ, flagging acute systemic strain days before physical collapse.'
   },
   covarianceMatrix: {
-    mlTerm: '5x5 Covariance Matrix',
+    mlTerm: '5x5 Full Covariance Matrix',
     mathSymbol: 'Σ (Sigma)',
     doctorTranslation: 'Vital Sign Interconnection Grid',
-    plainEnglishExplanation: 'A mathematical table showing how sleep, heart rate, stress, and mood influence one another in this specific astronaut.',
-    whyItMattersInSpace: 'Different astronauts react differently to zero gravity. Some show stress through higher heart rate; others lose sleep. The matrix learns each individual\'s unique physiological "fingerprint".'
+    plainEnglishExplanation: 'A mathematical correlation table that continuously tracks how each vital sign interacts with every other vital sign for this specific crew member. It quantifies whether an increase in emotional stress reliably drives down sleep duration or drives up resting heart rate.',
+    whyItMattersInSpace: 'Every human body responds uniquely to the stress of microgravity, radiation, and isolation. One astronaut may manifest acute strain through sleep onset insomnia, while another manifests it through tachycardia. The covariance matrix maps each individual’s unique physiological fingerprint.',
+    clinicalExample: 'A Commander with high baseline resilience might normally show zero correlation between flight workload and resting heart rate. If their covariance matrix suddenly shows strong positive coupling between stress and heart rate, the model recognizes early loss of autonomic buffering.'
   },
   priorWeightDecay: {
     mlTerm: 'Earth Prior Weight Decay',
-    mathSymbol: '(1 - α)^t',
+    mathSymbol: 'W_Earth = (1 - α)^t',
     doctorTranslation: 'Earth-to-Space Physiology Transition',
-    plainEnglishExplanation: 'On launch day (Day 1), the AI uses hospital clinical trial data from Earth. Each day in orbit, Earth rules are gradually replaced with the astronaut\'s actual space measurements.',
-    whyItMattersInSpace: 'No human has Earth physiology in deep space. Gravity fluid shifts and microgravity permanently alter heart rate and sleep cycles. The AI forgets terrestrial assumptions so it does not give false alarms.'
+    plainEnglishExplanation: 'When astronauts first launch (Flight Day 1), the AI initializes with clinical trials collected from healthy terrestrial subjects (PhysioNet MMASH and WESAD datasets). As each flight day passes, the AI gradually decays the weight of Earth assumptions using an exponential learning rate, replacing them with the astronaut\'s genuine microgravity telemetry.',
+    whyItMattersInSpace: 'No human has Earth physiology in deep space. Cephalad fluid shifts permanently elevate central venous pressure, alter nocturnal blood pressure dipping, and disrupt circadian melatonin release. Forgetting Earth baseline values prevents false medical alarms.',
+    clinicalExample: 'On Day 1, the AI evaluates vitals using 100% Earth clinical priors. By Flight Day 15, Earth influence drops to 28%. By Flight Day 30, the onboard model is 92% customized to that astronaut’s space physiology.'
   },
   outOfDistribution: {
     mlTerm: 'Out-Of-Distribution (OOD) Anomaly',
     mathSymbol: 'D_M > 2.8σ',
     doctorTranslation: 'Unprecedented Physiological Crisis',
-    plainEnglishExplanation: 'The astronaut\'s vital signs have formed a bodily pattern never seen before in their mission history, indicating an acute health event.',
-    whyItMattersInSpace: 'Deep space missions cannot wait 20 minutes for signals to reach mission control on Earth. When an unprecedented crisis strikes, the spacecraft edge computer immediately flags the anomaly on-site.'
+    plainEnglishExplanation: 'A mathematical boundary indicating that the crew member’s combined bodily parameters have drifted into a state never before encountered in their flight history or in established space medicine baselines.',
+    whyItMattersInSpace: 'During a Mars mission, round-trip radio signals take up to 44 minutes. Crew members cannot wait for Houston flight surgeons to diagnose a novel health crisis. When an Out-of-Distribution state occurs, the spacecraft computer immediately alerts the crew and provides diagnostic recommendations locally.',
+    clinicalExample: 'When an astronaut exhibits simultaneous severe sleep fragmentation, resting bradycardia, and blunted autonomic response, the system recognizes this combination as completely out-of-distribution, triggering the space pharmacology engine to check for adverse drug-drug interactions.'
   },
   naiveBayesHypotheses: {
     mlTerm: 'Naive Bayes Posterior Classifier',
-    mathSymbol: 'P(Condition | Telemetry)',
+    mathSymbol: 'P(Diagnosis | Biometrics)',
     doctorTranslation: 'Differential Medical Diagnosis',
-    plainEnglishExplanation: 'A medical diagnostic ranker that lists the most likely physical causes for the astronaut\'s symptoms, ranked from highest to lowest likelihood with clinical reasons.',
-    whyItMattersInSpace: 'Gives the crew and mission flight surgeon clear, ranked clinical options (e.g., #1 Sleeping Pill Tolerance, #2 Toxic Spacecraft Gas Buildup, #3 Fluid Shift) so they can take rapid counter-measures.'
+    plainEnglishExplanation: 'A probabilistic medical decision tool that takes the astronaut\'s biometric deviations (Z-scores) and active medications, combining them with space medicine epidemiology to compute the exact statistical probability of competing clinical diagnoses.',
+    whyItMattersInSpace: 'Rather than outputting a vague red warning, the AI ranks specific medical conditions from highest to lowest likelihood (e.g., #1 Zolpidem Tolerance 84%, #2 Environmental CO2 Accumulation 12%), providing flight surgeons with actionable rationale and protocols.',
+    clinicalExample: 'If a crew member takes Zolpidem and Promethazine together, the classifier immediately calculates an 88% probability for "Dual-Sedative CNS Depression", alerts the Medical Officer, and recommends continuous pulse oximetry monitoring.'
   },
   nigEpistemicConfidence: {
     mlTerm: 'Normal-Inverse-Gamma Posterior Certainty',
     mathSymbol: 'NIG(μ, λ, α, β)',
     doctorTranslation: 'AI Clinical Experience & Reliability Score',
-    plainEnglishExplanation: 'Measures how confident the AI is in its diagnosis based on how many days it has been observing this specific astronaut.',
-    whyItMattersInSpace: 'On Day 1, the AI has 50% confidence because it has only seen 1 night of data. By Day 30, it achieves >80% confidence because it has observed a full month of continuous microgravity telemetry.'
+    plainEnglishExplanation: 'Measures how confident the machine learning engine is in its own predictions based on the depth of historical data it has collected for that astronaut.',
+    whyItMattersInSpace: 'On Flight Day 2, the AI has only observed 2 nights of data, meaning its certainty is low (~45%) and it acts conservatively. By Flight Day 30, the model has accumulated 30 days of continuous telemetry, tightening its posterior variance and reaching >80% clinical confidence.',
+    clinicalExample: 'If an anomaly is flagged on Day 3, the AI notes that its confidence is low due to limited observation depth. If the same anomaly occurs on Day 28, the AI alerts the crew with 88% confidence that a true physiological failure is imminent.'
   }
 };
 
@@ -184,36 +191,54 @@ export const PlainEnglishInterpreter: React.FC<PlainEnglishInterpreterProps> = (
 
       {/* Selected Term Detail Box with Liquid Glass Tint */}
       <div style={{
-        background: 'rgba(0, 0, 0, 0.3)',
-        border: '1px solid rgba(255, 255, 255, 0.06)',
-        borderRadius: 14,
-        padding: '20px 24px',
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-        gap: 28
+        background: 'rgba(0, 0, 0, 0.4)',
+        border: '1px solid rgba(255, 255, 255, 0.08)',
+        borderRadius: 18,
+        padding: '24px 28px',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 20
       }}>
-        <div>
-          <div style={{ fontSize: 11.5, color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 600, letterSpacing: '0.5px', marginBottom: 4 }}>
-            Technical Concept:
-          </div>
-          <div style={{ fontSize: 17, fontWeight: 600, color: '#ffffff', display: 'flex', alignItems: 'center', gap: 8 }}>
-            {current.mlTerm} {current.mathSymbol && <span style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)', fontSize: 13.5 }}>({current.mathSymbol})</span>}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: 32 }}>
+          <div>
+            <div style={{ fontSize: 12, color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 600, letterSpacing: '0.6px', marginBottom: 6 }}>
+              Engineering & Mathematical Term:
+            </div>
+            <div style={{ fontSize: 20, fontWeight: 700, color: '#ffffff', display: 'flex', alignItems: 'center', gap: 10 }}>
+              {current.mlTerm} {current.mathSymbol && <span style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)', fontSize: 15 }}>({current.mathSymbol})</span>}
+            </div>
+
+            <div style={{ fontSize: 12, color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 600, letterSpacing: '0.6px', marginTop: 18, marginBottom: 6 }}>
+              Plain-English Medical Meaning:
+            </div>
+            <div style={{ fontSize: 15, color: '#f1f5f9', lineHeight: 1.7 }}>
+              {current.plainEnglishExplanation}
+            </div>
           </div>
 
-          <div style={{ fontSize: 11.5, color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 600, letterSpacing: '0.5px', marginTop: 16, marginBottom: 4 }}>
-            Medical Meaning:
-          </div>
-          <div style={{ fontSize: 14, color: '#f1f5f9', lineHeight: 1.6 }}>
-            {current.plainEnglishExplanation}
+          <div style={{ borderLeft: '1px solid rgba(255, 255, 255, 0.08)', paddingLeft: 32 }}>
+            <div style={{ fontSize: 12, color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 600, letterSpacing: '0.6px', marginBottom: 6 }}>
+              Why This Is Vital For Space Crew Safety:
+            </div>
+            <div style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.7 }}>
+              {current.whyItMattersInSpace}
+            </div>
           </div>
         </div>
 
-        <div style={{ borderLeft: '1px solid rgba(255, 255, 255, 0.06)', paddingLeft: 28 }}>
-          <div style={{ fontSize: 11.5, color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 600, letterSpacing: '0.5px', marginBottom: 4 }}>
-            Why This Matters for Crew Safety:
+        {/* Real-World Spaceflight Clinical Scenario */}
+        <div style={{
+          borderTop: '1px solid rgba(255, 255, 255, 0.06)',
+          paddingTop: 16,
+          background: 'rgba(255, 255, 255, 0.02)',
+          borderRadius: 12,
+          padding: '14px 18px'
+        }}>
+          <div style={{ fontSize: 12, color: '#ffffff', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 4 }}>
+            🔬 Space Medicine Clinical Example:
           </div>
-          <div style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.6 }}>
-            {current.whyItMattersInSpace}
+          <div style={{ fontSize: 14.5, color: '#e2e8f0', lineHeight: 1.6 }}>
+            {current.clinicalExample}
           </div>
         </div>
       </div>
