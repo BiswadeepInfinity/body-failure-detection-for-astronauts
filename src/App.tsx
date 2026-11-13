@@ -548,50 +548,42 @@ export const App: React.FC = () => {
         </div>
       )}
 
-      {/* Guided Walkthrough Script Modal */}
+      {/* Floating Transparent Guided Demo Walkthrough (No dimming backdrop, floating HUD capsule) */}
       {showDemoGuide && (
-        <div className="modal-overlay" onClick={() => setShowDemoGuide(false)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 8 }}>
-              <button 
-                onClick={() => setShowDemoGuide(false)}
-                style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer' }}
-              >
-                <X size={18} />
-              </button>
-            </div>
-            <DemoWalkthroughModal 
-              onStepChange={(_, tab, astroId) => {
-                if (astroId) setSelectedAstronautId(astroId);
-                if (tab === 'overview') {
-                  setActiveSection('crew_health');
-                  setDetailViewAstroId(null);
-                } else if (tab === 'detail') {
-                  setActiveSection('crew_health');
-                  setDetailViewAstroId(astroId || 'ast-01');
-                } else if (tab === 'adaptive_ml') {
-                  setActiveSection('predictive_intelligence');
-                  setSelectedSubIntelligence('adaptive_manifold');
-                } else if (tab === 'predictive_failure') {
-                  setActiveSection('predictive_intelligence');
-                  setSelectedSubIntelligence('failure_forecast');
-                } else if (tab === 'medication') {
-                  setActiveSection('pharmacology');
-                  setSelectedSubPharmacy('logging');
-                } else if (tab === 'sleep_effectiveness') {
-                  setActiveSection('pharmacology');
-                  setSelectedSubPharmacy('efficacy');
-                } else if (tab === 'stock') {
-                  setActiveSection('pharmacology');
-                  setSelectedSubPharmacy('inventory');
-                } else if (tab === 'alerts') {
-                  setActiveSection('alerts_log');
-                }
-              }}
-              onClose={() => setShowDemoGuide(false)}
-            />
-          </div>
-        </div>
+        <DemoWalkthroughModal 
+          onStepChange={(_, tab, astroId) => {
+            if (astroId) setSelectedAstronautId(astroId);
+            if (tab === 'overview') {
+              setActiveSection('crew_health');
+              setDetailViewAstroId(null);
+            } else if (tab === 'detail') {
+              setActiveSection('crew_health');
+              setDetailViewAstroId(astroId || 'ast-01');
+            } else if (tab === 'adaptive_ml') {
+              setActiveSection('predictive_intelligence');
+              setSelectedSubIntelligence('adaptive_manifold');
+            } else if (tab === 'predictive_failure') {
+              setActiveSection('predictive_intelligence');
+              setSelectedSubIntelligence('failure_forecast');
+            } else if (tab === 'medication') {
+              setActiveSection('pharmacology');
+              setSelectedSubPharmacy('logging');
+            } else if (tab === 'sleep_effectiveness') {
+              setActiveSection('pharmacology');
+              setSelectedSubPharmacy('efficacy');
+            } else if (tab === 'stock') {
+              setActiveSection('pharmacology');
+              setSelectedSubPharmacy('inventory');
+            } else if (tab === 'alerts') {
+              setActiveSection('alerts_log');
+            } else if (tab === 'scientist_portal') {
+              setActiveSection('scientist_portal');
+            } else if (tab === 'ml_debugger') {
+              setActiveSection('ml_debugger');
+            }
+          }}
+          onClose={() => setShowDemoGuide(false)}
+        />
       )}
     </div>
   );

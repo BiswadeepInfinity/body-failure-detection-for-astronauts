@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles, ArrowRight } from 'lucide-react';
+import { Sparkles, ArrowRight, ArrowLeft, X } from 'lucide-react';
 
 interface Props {
   onStepChange: (stepIndex: number, tabName: string, astronautId?: string) => void;
@@ -11,42 +11,42 @@ export const DemoWalkthroughModal: React.FC<Props> = ({ onStepChange, onClose })
 
   const steps = [
     {
-      title: 'Step 1: Crew Overview & Sleep Decline Detection',
+      title: 'Step 1: Mission Control Overview & Sleep Decline',
       tab: 'overview',
       astroId: undefined,
-      description: 'Observe the 4 astronauts. Notice CDR Marcus Vance flagged in Red. His 14-day rolling baseline detected a sudden drop down to 4.2h sleep and acute stress spikes before he sought medical intervention.',
+      description: 'Observe CDR Marcus Vance flagged in Red. His personalized 14-day rolling baseline detected a sudden drop to 4.2h sleep alongside acute autonomic stress before he reported any symptoms.',
       actionLabel: 'Go to Crew Overview'
     },
     {
-      title: 'Step 2: Personalized 14-Day Baseline Analysis',
+      title: 'Step 2: Personalized Microgravity Baseline',
       tab: 'detail',
       astroId: 'ast-01',
-      description: 'Inspect Marcus Vance’s detail telemetry. The baseline band shows the contrast between fixed NASA standards (8.0h) and Marcus’s individual baseline (6.8h down to 4.5h), demonstrating personalized thresholds.',
+      description: 'Inspect Marcus Vance’s detail telemetry. The baseline band highlights the crucial contrast between rigid Earth standard guidelines (8.0h) and his real individual space baseline (6.8h down to 4.5h).',
       actionLabel: 'Inspect Marcus Telemetry'
     },
     {
-      title: 'Step 3: Hypnotic Efficacy (Our Standout Edge)',
+      title: 'Step 3: Hypnotic Efficacy & Sleep Architecture',
       tab: 'sleep_effectiveness',
       astroId: 'ast-01',
-      description: 'Zolpidem was started on Day 22. See the plain verdict: Zolpidem cut sleep latency by 14.5 minutes, but total sleep hours did not significantly increase (+0.6h)—mirroring findings from NASA OCHMO technical briefs!',
+      description: 'Zolpidem was prescribed on Flight Day 22. See the plain verdict: Zolpidem reduced sleep onset latency by 14.5 minutes, yet total slow-wave restorative sleep did not significantly improve (+0.6h)—mirroring official NASA OCHMO technical briefs.',
       actionLabel: 'View Hypnotic Effectiveness'
     },
     {
-      title: 'Step 4: Real-time Drug-Drug Interaction Warning',
+      title: 'Step 4: Real-time Multi-Drug Interaction Warning',
       tab: 'medication',
       astroId: 'ast-01',
-      description: 'On Day 28, Marcus logged Promethazine for space motion sickness. The medication engine flags a critical RED alert because NASA ISS Medical Kit rules strictly mandate: "Do not use with sleep meds" (additive CNS depression risk).',
+      description: 'On Day 28, Marcus logged Promethazine for space motion sickness. The pharmacology engine flags a critical RED alert because NASA ISS Medical Kit rules strictly mandate: "Do not use with sleep meds" due to additive CNS depression.',
       actionLabel: 'View Interaction Alert'
     },
     {
-      title: 'Step 5: Spaceflight Microgravity Drug Potency Flags',
+      title: 'Step 5: Microgravity Drug Degradation Flags',
       tab: 'stock',
       astroId: undefined,
-      description: 'Open the spacecraft inventory. Observe that Promethazine (repackaged 14 months ago) is flagged Yellow, and Benadryl (repackaged 26 months ago) is flagged Red due to 1.5× microgravity degradation (Reichard et al. 2023).',
+      description: 'Open the spacecraft inventory. Notice that Promethazine (repackaged 14 months ago) is flagged Yellow, and Benadryl (repackaged 26 months ago) is flagged Red due to 1.5× microgravity degradation (Reichard et al. 2023, npj Microgravity).',
       actionLabel: 'View Formulary Stock Flags'
     },
     {
-      title: 'Step 6: Scientist Self-Service EHR Portal & Multi-Month Calendar',
+      title: 'Step 6: Scientist EHR Portal & Multi-Month Calendar',
       tab: 'scientist_portal',
       astroId: 'ast-01',
       description: 'Crew members log sleep hours, latency, HR, stress, and medications directly in an intuitive multi-month calendar (Jan-Dec 2026). When astronauts edit or log a day, the model updates live.',
@@ -74,64 +74,144 @@ export const DemoWalkthroughModal: React.FC<Props> = ({ onStepChange, onClose })
     onStepChange(index, step.tab, step.astroId);
   };
 
+  const activeStepData = steps[currentStep];
+
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+    <div style={{
+      position: 'fixed',
+      bottom: 28,
+      right: 28,
+      zIndex: 9999,
+      maxWidth: 440,
+      width: 'calc(100vw - 56px)',
+      background: 'rgba(10, 14, 24, 0.72)',
+      backdropFilter: 'blur(28px)',
+      WebkitBackdropFilter: 'blur(28px)',
+      border: '1px solid rgba(255, 255, 255, 0.16)',
+      boxShadow: '0 20px 60px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.15)',
+      borderRadius: 24,
+      padding: '24px 26px',
+      color: '#ffffff',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 16,
+      animation: 'fadeInUp 0.25s cubic-bezier(0.16, 1, 0.3, 1)'
+    }}>
+      {/* Top Header Row with Step Counter & Dismiss */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div>
-          <h3 style={{ fontSize: 16, fontWeight: 700, color: '#ffffff', display: 'flex', alignItems: 'center', gap: 8 }}>
-            <Sparkles size={18} style={{ color: '#f59e0b' }} /> Hackathon Judge Demo Script
-          </h3>
-          <p style={{ fontSize: 12, color: 'var(--text-secondary)' }}>
-            Follow the 5-step guided story prescribed in Section 7 of the project brief.
-          </p>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <div style={{
+            background: 'rgba(255, 255, 255, 0.1)',
+            border: '1px solid rgba(255, 255, 255, 0.15)',
+            borderRadius: 999,
+            padding: '3px 12px',
+            fontSize: 11.5,
+            fontWeight: 700,
+            letterSpacing: '0.5px',
+            textTransform: 'uppercase',
+            color: '#f8fafc',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 6
+          }}>
+            <Sparkles size={13} style={{ color: '#fbbf24' }} /> Step {currentStep + 1} of {steps.length}
+          </div>
         </div>
-      </div>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-        {steps.map((st, idx) => {
-          const isActive = currentStep === idx;
-          return (
-            <div 
-              key={st.title}
-              style={{
-                background: isActive ? 'rgba(59, 130, 246, 0.15)' : 'var(--bg-surface)',
-                border: `1px solid ${isActive ? '#3b82f6' : 'var(--border-subtle)'}`,
-                borderRadius: 6,
-                padding: '12px 14px',
-                cursor: 'pointer'
-              }}
-              onClick={() => handleApplyStep(idx)}
-            >
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
-                <strong style={{ fontSize: 13, color: isActive ? '#60a5fa' : '#ffffff' }}>
-                  {st.title}
-                </strong>
-                {isActive && (
-                  <span style={{ fontSize: 11, color: '#93c5fd', background: 'rgba(59, 130, 246, 0.3)', padding: '2px 8px', borderRadius: 4 }}>
-                    Active Step
-                  </span>
-                )}
-              </div>
-              <p style={{ fontSize: 12, color: 'var(--text-secondary)', lineHeight: 1.4 }}>
-                {st.description}
-              </p>
-            </div>
-          );
-        })}
-      </div>
-
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 10 }}>
-        <button className="btn-secondary" onClick={onClose}>
-          Close Guide
-        </button>
         <button 
-          className="btn-primary" 
+          onClick={onClose}
+          style={{
+            background: 'rgba(255, 255, 255, 0.05)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            color: '#cbd5e1',
+            borderRadius: 999,
+            width: 30,
+            height: 30,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            transition: 'all 0.15s ease'
+          }}
+          title="Close Walkthrough"
+        >
+          <X size={15} />
+        </button>
+      </div>
+
+      {/* Single Active Tip Content Card */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <h4 style={{ fontSize: 16.5, fontWeight: 700, color: '#ffffff', lineHeight: 1.35 }}>
+          {activeStepData.title}
+        </h4>
+        <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.6 }}>
+          {activeStepData.description}
+        </p>
+      </div>
+
+      {/* Progress Dots Indicator */}
+      <div style={{ display: 'flex', gap: 6, alignItems: 'center', margin: '4px 0' }}>
+        {steps.map((_, idx) => (
+          <div
+            key={idx}
+            onClick={() => handleApplyStep(idx)}
+            style={{
+              height: 4,
+              flex: 1,
+              borderRadius: 999,
+              background: idx === currentStep ? '#ffffff' : (idx < currentStep ? 'rgba(255, 255, 255, 0.35)' : 'rgba(255, 255, 255, 0.1)'),
+              cursor: 'pointer',
+              transition: 'all 0.2s ease'
+            }}
+            title={`Jump to Step ${idx + 1}`}
+          />
+        ))}
+      </div>
+
+      {/* Controls: Prev / Next Button */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 4 }}>
+        <button
+          onClick={() => {
+            if (currentStep > 0) handleApplyStep(currentStep - 1);
+          }}
+          disabled={currentStep === 0}
+          style={{
+            background: 'transparent',
+            border: 'none',
+            color: currentStep === 0 ? 'rgba(255, 255, 255, 0.25)' : 'var(--text-secondary)',
+            fontSize: 13,
+            cursor: currentStep === 0 ? 'default' : 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 6,
+            padding: '6px 0'
+          }}
+        >
+          <ArrowLeft size={14} /> Back
+        </button>
+
+        <button 
           onClick={() => {
             const nextIdx = (currentStep + 1) % steps.length;
             handleApplyStep(nextIdx);
           }}
+          style={{
+            background: '#ffffff',
+            color: '#000000',
+            border: 'none',
+            borderRadius: 999,
+            padding: '9px 20px',
+            fontSize: 13.5,
+            fontWeight: 700,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 8,
+            cursor: 'pointer',
+            boxShadow: '0 4px 14px rgba(255, 255, 255, 0.25)',
+            transition: 'all 0.15s ease'
+          }}
         >
-          <span>{currentStep === steps.length - 1 ? 'Restart Script (Step 1)' : 'Next Demo Step'}</span>
+          <span>{currentStep === steps.length - 1 ? 'Finish Script' : 'NEXT STEP'}</span>
           <ArrowRight size={14} />
         </button>
       </div>
