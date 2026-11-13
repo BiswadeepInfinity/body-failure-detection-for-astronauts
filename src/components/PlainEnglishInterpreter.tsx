@@ -87,35 +87,37 @@ export const PlainEnglishInterpreter: React.FC<PlainEnglishInterpreterProps> = (
 
   return (
     <div className="space-card" style={{
-      background: 'linear-gradient(135deg, rgba(8, 47, 73, 0.4) 0%, rgba(15, 23, 42, 0.75) 100%)',
+      background: 'linear-gradient(135deg, rgba(8, 47, 73, 0.45) 0%, rgba(15, 23, 42, 0.85) 100%)',
       borderColor: 'rgba(56, 189, 248, 0.4)',
-      padding: '18px 20px',
-      marginBottom: 20
+      padding: '22px 26px',
+      marginBottom: 24,
+      borderRadius: 12
     }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12, flexWrap: 'wrap', gap: 10 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16, flexWrap: 'wrap', gap: 12 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <div style={{
             background: 'rgba(56, 189, 248, 0.15)',
-            border: '1px solid rgba(56, 189, 248, 0.3)',
-            borderRadius: 6,
-            padding: '5px 8px',
+            border: '1px solid rgba(56, 189, 248, 0.35)',
+            borderRadius: 8,
+            padding: '6px 12px',
             color: '#38bdf8',
             display: 'flex',
             alignItems: 'center',
-            gap: 6,
-            fontSize: 11,
+            gap: 8,
+            fontSize: 12.5,
             fontWeight: 700,
-            textTransform: 'uppercase'
+            textTransform: 'uppercase',
+            letterSpacing: '0.4px'
           }}>
-            <Stethoscope size={13} /> Plain-English Medical Interpreter
+            <Stethoscope size={16} /> Plain-English Medical Interpreter
           </div>
-          <span style={{ fontSize: 12, color: 'var(--text-secondary)' }}>
+          <span style={{ fontSize: 13.5, color: 'var(--text-secondary)' }}>
             Translating complex math into plain astronaut & flight surgeon language
           </span>
         </div>
 
-        {/* Term Switcher */}
-        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+        {/* Term Switcher Buttons with generous padding */}
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           {Object.entries(ML_GLOSSARY).map(([key, item]) => {
             const isSelected = key === selectedKey;
             return (
@@ -123,12 +125,12 @@ export const PlainEnglishInterpreter: React.FC<PlainEnglishInterpreterProps> = (
                 key={key}
                 onClick={() => setSelectedKey(key)}
                 style={{
-                  background: isSelected ? '#38bdf8' : 'rgba(255, 255, 255, 0.05)',
+                  background: isSelected ? '#38bdf8' : 'rgba(255, 255, 255, 0.06)',
                   border: isSelected ? '1px solid #ffffff' : '1px solid var(--border-subtle)',
-                  color: isSelected ? '#000000' : 'var(--text-secondary)',
-                  padding: '4px 10px',
-                  borderRadius: 5,
-                  fontSize: 11,
+                  color: isSelected ? '#000000' : 'var(--text-main)',
+                  padding: '7px 14px',
+                  borderRadius: 6,
+                  fontSize: 12.5,
                   fontWeight: isSelected ? 700 : 500,
                   cursor: 'pointer',
                   transition: 'all 0.15s ease'
@@ -141,37 +143,37 @@ export const PlainEnglishInterpreter: React.FC<PlainEnglishInterpreterProps> = (
         </div>
       </div>
 
-      {/* Selected Term Detail Box */}
+      {/* Selected Term Detail Box with generous text and spacing */}
       <div style={{
-        background: 'rgba(0, 0, 0, 0.4)',
+        background: 'rgba(0, 0, 0, 0.45)',
         border: '1px solid var(--border-subtle)',
-        borderRadius: 8,
-        padding: '14px 16px',
+        borderRadius: 10,
+        padding: '18px 22px',
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-        gap: 16
+        gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+        gap: 24
       }}>
         <div>
-          <div style={{ fontSize: 11, color: '#38bdf8', textTransform: 'uppercase', fontWeight: 700, marginBottom: 2 }}>
+          <div style={{ fontSize: 12, color: '#38bdf8', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.4px', marginBottom: 4 }}>
             Engineering & ML Term:
           </div>
-          <div style={{ fontSize: 15, fontWeight: 700, color: '#ffffff', display: 'flex', alignItems: 'center', gap: 6 }}>
-            {current.mlTerm} {current.mathSymbol && <span style={{ color: '#c084fc', fontFamily: 'var(--font-mono)', fontSize: 13 }}>({current.mathSymbol})</span>}
+          <div style={{ fontSize: 17, fontWeight: 700, color: '#ffffff', display: 'flex', alignItems: 'center', gap: 8 }}>
+            {current.mlTerm} {current.mathSymbol && <span style={{ color: '#c084fc', fontFamily: 'var(--font-mono)', fontSize: 14 }}>({current.mathSymbol})</span>}
           </div>
 
-          <div style={{ fontSize: 11, color: '#34d399', textTransform: 'uppercase', fontWeight: 700, marginTop: 10, marginBottom: 2 }}>
+          <div style={{ fontSize: 12, color: '#34d399', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.4px', marginTop: 14, marginBottom: 4 }}>
             Plain-English Medical Meaning:
           </div>
-          <div style={{ fontSize: 13, color: '#f1f5f9', lineHeight: 1.45 }}>
+          <div style={{ fontSize: 14, color: '#f1f5f9', lineHeight: 1.6 }}>
             {current.plainEnglishExplanation}
           </div>
         </div>
 
-        <div style={{ borderLeft: '1px solid rgba(255, 255, 255, 0.08)', paddingLeft: 16 }}>
-          <div style={{ fontSize: 11, color: '#fbbf24', textTransform: 'uppercase', fontWeight: 700, marginBottom: 2 }}>
+        <div style={{ borderLeft: '1px solid rgba(255, 255, 255, 0.12)', paddingLeft: 22 }}>
+          <div style={{ fontSize: 12, color: '#fbbf24', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.4px', marginBottom: 4 }}>
             Why This Matters for Crew Safety in Deep Space:
           </div>
-          <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.45 }}>
+          <div style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.6 }}>
             {current.whyItMattersInSpace}
           </div>
         </div>
