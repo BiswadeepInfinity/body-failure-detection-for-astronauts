@@ -130,12 +130,13 @@ export const AdaptiveMLScreen: React.FC<Props> = ({ astronauts }) => {
         }}
       />
 
-      {/* NEW: LIVE LEARNING INSPECTION PANEL */}
+      {/* LIVE LEARNING INSPECTION PANEL */}
       <div className="space-card" style={{ 
-        background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%)',
-        borderColor: '#a855f7',
+        background: 'rgba(15, 20, 32, 0.65)',
+        border: '1px solid var(--border-glass)',
+        borderRadius: 20,
         marginBottom: 24,
-        padding: 20
+        padding: 24
       }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
           <div>
@@ -308,17 +309,18 @@ export const AdaptiveMLScreen: React.FC<Props> = ({ astronauts }) => {
       {/* Top 3 ML Diagnostic Cards */}
       <div className="grid-3" style={{ marginBottom: 24 }}>
         {/* Card 1: Multi-variate Mahalanobis Distance */}
-        <div className="space-card" style={{ borderColor: latestEvaluation.isNovelCondition ? '#ef4444' : '#3b82f6' }}>
+        <div className="space-card">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
             <span className="metric-label" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
               <Compass size={14} style={{ color: '#38bdf8' }} /> True Mahalanobis Distance (D_M)
             </span>
             <span style={{
-              fontSize: 10,
-              padding: '2px 6px',
-              borderRadius: 4,
-              background: latestEvaluation.isNovelCondition ? 'rgba(239, 68, 68, 0.2)' : 'rgba(16, 185, 129, 0.2)',
-              color: latestEvaluation.isNovelCondition ? '#fca5a5' : '#6ee7b7'
+              fontSize: 11,
+              padding: '3px 10px',
+              borderRadius: 999,
+              background: latestEvaluation.isNovelCondition ? 'rgba(239, 68, 68, 0.15)' : 'rgba(16, 185, 129, 0.15)',
+              color: latestEvaluation.isNovelCondition ? '#fca5a5' : '#6ee7b7',
+              border: '1px solid var(--border-glass)'
             }}>
               {latestEvaluation.isNovelCondition ? 'Out-Of-Distribution' : 'Nominal Manifold'}
             </span>
@@ -326,13 +328,13 @@ export const AdaptiveMLScreen: React.FC<Props> = ({ astronauts }) => {
           <div className="metric-val" style={{ color: latestEvaluation.isNovelCondition ? '#f87171' : '#ffffff' }}>
             {latestEvaluation.mahalanobisDistance} <span style={{ fontSize: 13, fontWeight: 400 }}>σ</span>
           </div>
-          <div style={{ fontSize: 11, color: 'var(--text-secondary)', marginTop: 4 }}>
+          <div style={{ fontSize: 12, color: 'var(--text-secondary)', marginTop: 4 }}>
             Full covariance: [Sleep ↔ Latency ↔ HR ↔ Stress ↔ Mood] co-movement tracking.
           </div>
         </div>
 
         {/* Card 2: Novelty & Uncertainty Index */}
-        <div className="space-card" style={{ borderColor: latestEvaluation.noveltyScorePct > 60 ? '#f59e0b' : '#3b82f6' }}>
+        <div className="space-card">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
             <span className="metric-label" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
               <Cpu size={14} style={{ color: '#c084fc' }} /> Novelty Discovery Score
@@ -342,7 +344,7 @@ export const AdaptiveMLScreen: React.FC<Props> = ({ astronauts }) => {
             </span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '8px 0' }}>
-            <div style={{ flex: 1, height: 8, background: 'rgba(255,255,255,0.1)', borderRadius: 4, overflow: 'hidden' }}>
+            <div style={{ flex: 1, height: 8, background: 'rgba(255,255,255,0.08)', borderRadius: 999, overflow: 'hidden' }}>
               <div style={{
                 width: `${latestEvaluation.noveltyScorePct}%`,
                 height: '100%',
@@ -350,7 +352,7 @@ export const AdaptiveMLScreen: React.FC<Props> = ({ astronauts }) => {
               }} />
             </div>
           </div>
-          <div style={{ fontSize: 11, color: 'var(--text-secondary)' }}>
+          <div style={{ fontSize: 12, color: 'var(--text-secondary)' }}>
             Chi-sq (dof=5) distribution test: Evaluates if bodily pattern has occurred in mission history.
           </div>
         </div>
@@ -368,7 +370,7 @@ export const AdaptiveMLScreen: React.FC<Props> = ({ astronauts }) => {
           <div className="metric-val" style={{ color: '#10b981' }}>
             {latestEvaluation.modelConfidenceScore}%
           </div>
-          <div style={{ fontSize: 11, color: 'var(--text-secondary)', marginTop: 4 }}>
+          <div style={{ fontSize: 12, color: 'var(--text-secondary)', marginTop: 4 }}>
             Normal-Inverse-Gamma conjugate posterior certainty tightens with flight duration.
           </div>
         </div>
@@ -376,31 +378,32 @@ export const AdaptiveMLScreen: React.FC<Props> = ({ astronauts }) => {
 
       {/* Probabilistic Naive Bayes Hypothesis Ranking Section */}
       <div className="space-card" style={{ 
-        background: 'linear-gradient(135deg, rgba(88, 28, 135, 0.25) 0%, rgba(15, 23, 42, 0.8) 100%)',
-        borderColor: '#a855f7',
+        background: 'rgba(15, 20, 32, 0.65)',
+        border: '1px solid var(--border-glass)',
+        borderRadius: 20,
         marginBottom: 24,
-        padding: 20
+        padding: 24
       }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <Sparkles size={20} style={{ color: '#c084fc' }} />
             <div>
               <h3 style={{ fontSize: 16, fontWeight: 700, color: '#ffffff' }}>
                 Probabilistic Space Medicine Hypothesis Ranker (Naive Bayes)
               </h3>
-              <p style={{ fontSize: 11, color: '#e9d5ff' }}>
+              <p style={{ fontSize: 12, color: 'var(--text-secondary)' }}>
                 Posterior probability P(Etiology | Telemetry Z-Scores) conditioned on spaceflight clinical priors.
               </p>
             </div>
           </div>
-          <span style={{ fontSize: 11, background: 'rgba(168, 85, 247, 0.2)', color: '#e9d5ff', padding: '4px 10px', borderRadius: 4, fontWeight: 600 }}>
+          <span style={{ fontSize: 11, background: 'rgba(255, 255, 255, 0.08)', border: '1px solid var(--border-glass)', color: '#ffffff', padding: '4px 12px', borderRadius: 999, fontWeight: 600 }}>
             Active Deep Space Reasoning
           </span>
         </div>
 
         {latestEvaluation.rankedHypotheses.length === 0 ? (
-          <div style={{ fontSize: 13, color: '#cbd5e1', padding: '14px', background: 'rgba(15, 23, 42, 0.5)', borderRadius: 6, display: 'flex', alignItems: 'center', gap: 8 }}>
-            <CheckCircle2 size={16} style={{ color: '#10b981' }} />
+          <div style={{ fontSize: 13, color: '#cbd5e1', padding: '16px', background: 'rgba(0, 0, 0, 0.3)', border: '1px solid var(--border-subtle)', borderRadius: 14, display: 'flex', alignItems: 'center', gap: 10 }}>
+            <CheckCircle2 size={18} style={{ color: '#10b981' }} />
             Astronaut physiological manifold is nominal on Day {currentDayScrub} ($D_M &lt; 2.8\sigma$). No Out-of-Distribution condition detected requiring differential diagnosis.
           </div>
         ) : (
@@ -409,40 +412,41 @@ export const AdaptiveMLScreen: React.FC<Props> = ({ astronauts }) => {
               <div 
                 key={idx}
                 style={{
-                  background: 'rgba(15, 23, 42, 0.75)',
-                  border: `1px solid ${idx === 0 ? '#a855f7' : 'rgba(168, 85, 247, 0.3)'}`,
-                  borderRadius: 8,
-                  padding: '14px 16px'
+                  background: 'rgba(0, 0, 0, 0.4)',
+                  border: '1px solid var(--border-glass)',
+                  borderRadius: 14,
+                  padding: '16px 20px'
                 }}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 6 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                     <span style={{
-                      padding: '2px 8px',
-                      borderRadius: 4,
-                      fontSize: 10,
+                      padding: '3px 10px',
+                      borderRadius: 999,
+                      fontSize: 11,
                       fontWeight: 700,
-                      background: idx === 0 ? '#a855f7' : 'rgba(168, 85, 247, 0.3)',
-                      color: '#ffffff'
+                      background: idx === 0 ? 'rgba(168, 85, 247, 0.25)' : 'rgba(255, 255, 255, 0.08)',
+                      color: idx === 0 ? '#c084fc' : '#cbd5e1',
+                      border: '1px solid var(--border-glass)'
                     }}>
                       RANK #{idx + 1}
                     </span>
-                    <strong style={{ fontSize: 14, color: '#ffffff' }}>{hyp.title}</strong>
+                    <strong style={{ fontSize: 15, color: '#ffffff' }}>{hyp.title}</strong>
                   </div>
                   <div style={{ textAlign: 'right' }}>
-                    <span style={{ fontSize: 14, fontWeight: 700, color: '#c084fc', fontFamily: 'var(--font-mono)' }}>
+                    <span style={{ fontSize: 15, fontWeight: 700, color: '#c084fc', fontFamily: 'var(--font-mono)' }}>
                       {hyp.probabilityPct}%
                     </span>
-                    <div style={{ fontSize: 9, color: 'var(--text-muted)' }}>Posterior Prob</div>
+                    <div style={{ fontSize: 10, color: 'var(--text-muted)' }}>Posterior Prob</div>
                   </div>
                 </div>
 
-                <div style={{ fontSize: 12, color: '#cbd5e1', lineHeight: 1.4, margin: '6px 0' }}>
+                <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.5, margin: '8px 0' }}>
                   <strong>Diagnostic Evidence:</strong> {hyp.evidence}
                 </div>
 
-                <div style={{ fontSize: 11, color: '#38bdf8', background: 'rgba(56, 189, 248, 0.1)', padding: '6px 10px', borderRadius: 4, display: 'flex', alignItems: 'center', gap: 6, marginTop: 6 }}>
-                  <ArrowRight size={12} />
+                <div style={{ fontSize: 12.5, color: '#38bdf8', background: 'rgba(56, 189, 248, 0.08)', border: '1px solid rgba(56, 189, 248, 0.2)', padding: '8px 14px', borderRadius: 10, display: 'flex', alignItems: 'center', gap: 8, marginTop: 8 }}>
+                  <ArrowRight size={14} />
                   <span><strong>Flight Surgeon Action:</strong> {hyp.recommendedAction}</span>
                 </div>
               </div>
