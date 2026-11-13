@@ -171,69 +171,138 @@ export const App: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Clean Navigation Tabs */}
-      <nav className="tab-navigation" style={{ display: 'flex', gap: 8, padding: '10px 24px', background: 'var(--bg-surface)', borderBottom: '1px solid var(--border-subtle)', flexWrap: 'wrap' }}>
+      {/* Main Clean Navigation Tabs - Sleek Minimalist Underline Style */}
+      <nav className="tab-navigation" style={{ 
+        display: 'flex', 
+        alignItems: 'center',
+        gap: 32, 
+        padding: '0 32px', 
+        background: '#070a0f', 
+        borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+        overflowX: 'auto'
+      }}>
         {/* Tab 1: Crew Health Overview */}
         <button 
-          className={`nav-tab-btn ${activeSection === 'crew_health' ? 'active' : ''}`}
+          className="clean-nav-tab"
           onClick={() => {
             setActiveSection('crew_health');
             setDetailViewAstroId(null);
           }}
-          style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 16px', borderRadius: 6, fontWeight: 600, fontSize: 13 }}
+          style={{ 
+            background: 'none',
+            border: 'none',
+            borderBottom: activeSection === 'crew_health' ? '2px solid #38bdf8' : '2px solid transparent',
+            color: activeSection === 'crew_health' ? '#ffffff' : 'var(--text-secondary)',
+            padding: '14px 4px',
+            fontSize: 14,
+            fontWeight: activeSection === 'crew_health' ? 600 : 400,
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 8,
+            transition: 'all 0.15s ease'
+          }}
         >
-          <Users size={16} /> 1. Mission Control Overview
+          <Users size={15} style={{ color: activeSection === 'crew_health' ? '#38bdf8' : 'inherit' }} />
+          <span>Mission Control</span>
         </button>
 
-        {/* Tab 2: NEW Scientist Profile & Calendar Journal */}
+        {/* Tab 2: Scientist Profile & Calendar Journal */}
         <button 
-          className={`nav-tab-btn ${activeSection === 'scientist_portal' ? 'active' : ''}`}
+          className="clean-nav-tab"
           onClick={() => setActiveSection('scientist_portal')}
-          style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 16px', borderRadius: 6, fontWeight: 600, fontSize: 13, borderColor: activeSection === 'scientist_portal' ? '#38bdf8' : undefined }}
+          style={{ 
+            background: 'none',
+            border: 'none',
+            borderBottom: activeSection === 'scientist_portal' ? '2px solid #38bdf8' : '2px solid transparent',
+            color: activeSection === 'scientist_portal' ? '#ffffff' : 'var(--text-secondary)',
+            padding: '14px 4px',
+            fontSize: 14,
+            fontWeight: activeSection === 'scientist_portal' ? 600 : 400,
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 8,
+            transition: 'all 0.15s ease'
+          }}
         >
-          <Calendar size={16} style={{ color: '#38bdf8' }} /> 2. Scientist Profiles & Calendar Logs
-          <span style={{ fontSize: 10, background: '#0284c7', color: '#fff', padding: '1px 6px', borderRadius: 4, fontWeight: 700 }}>
-            DAILY JOURNAL
-          </span>
+          <Calendar size={15} style={{ color: activeSection === 'scientist_portal' ? '#38bdf8' : 'inherit' }} />
+          <span>Scientist Profiles & Calendar</span>
         </button>
 
         {/* Tab 3: Predictive & Adaptive Intelligence */}
         <button 
-          className={`nav-tab-btn ${activeSection === 'predictive_intelligence' ? 'active' : ''}`}
+          className="clean-nav-tab"
           onClick={() => setActiveSection('predictive_intelligence')}
-          style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 16px', borderRadius: 6, fontWeight: 600, fontSize: 13, borderColor: activeSection === 'predictive_intelligence' ? '#c084fc' : undefined }}
+          style={{ 
+            background: 'none',
+            border: 'none',
+            borderBottom: activeSection === 'predictive_intelligence' ? '2px solid #a855f7' : '2px solid transparent',
+            color: activeSection === 'predictive_intelligence' ? '#ffffff' : 'var(--text-secondary)',
+            padding: '14px 4px',
+            fontSize: 14,
+            fontWeight: activeSection === 'predictive_intelligence' ? 600 : 400,
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 8,
+            transition: 'all 0.15s ease'
+          }}
         >
-          <Activity size={16} style={{ color: '#c084fc' }} /> 3. Adaptive AI & Failure Forecasting
-          <span style={{ fontSize: 10, background: '#a855f7', color: '#fff', padding: '1px 6px', borderRadius: 4, fontWeight: 700 }}>
-            N=1 ML
-          </span>
+          <Activity size={15} style={{ color: activeSection === 'predictive_intelligence' ? '#a855f7' : 'inherit' }} />
+          <span>Adaptive AI & Forecasting</span>
         </button>
 
         {/* Tab 4: Spaceflight Pharmacology */}
         <button 
-          className={`nav-tab-btn ${activeSection === 'pharmacology' ? 'active' : ''}`}
+          className="clean-nav-tab"
           onClick={() => setActiveSection('pharmacology')}
-          style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 16px', borderRadius: 6, fontWeight: 600, fontSize: 13, borderColor: activeSection === 'pharmacology' ? '#38bdf8' : undefined }}
+          style={{ 
+            background: 'none',
+            border: 'none',
+            borderBottom: activeSection === 'pharmacology' ? '2px solid #38bdf8' : '2px solid transparent',
+            color: activeSection === 'pharmacology' ? '#ffffff' : 'var(--text-secondary)',
+            padding: '14px 4px',
+            fontSize: 14,
+            fontWeight: activeSection === 'pharmacology' ? 600 : 400,
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 8,
+            transition: 'all 0.15s ease'
+          }}
         >
-          <Pill size={16} style={{ color: '#38bdf8' }} /> 4. Space Pharmacology & Formulary
-          <span style={{ fontSize: 10, background: '#0284c7', color: '#fff', padding: '1px 6px', borderRadius: 4, fontWeight: 700 }}>
-            15 DRUGS
-          </span>
+          <Pill size={15} style={{ color: activeSection === 'pharmacology' ? '#38bdf8' : 'inherit' }} />
+          <span>Space Pharmacology</span>
         </button>
 
         {/* Tab 5: Clinical Triage & Alerts */}
         <button 
-          className={`nav-tab-btn ${activeSection === 'alerts_log' ? 'active' : ''}`}
+          className="clean-nav-tab"
           onClick={() => setActiveSection('alerts_log')}
-          style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 16px', borderRadius: 6, fontWeight: 600, fontSize: 13 }}
+          style={{ 
+            background: 'none',
+            border: 'none',
+            borderBottom: activeSection === 'alerts_log' ? '2px solid #f87171' : '2px solid transparent',
+            color: activeSection === 'alerts_log' ? '#ffffff' : 'var(--text-secondary)',
+            padding: '14px 4px',
+            fontSize: 14,
+            fontWeight: activeSection === 'alerts_log' ? 600 : 400,
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 8,
+            transition: 'all 0.15s ease'
+          }}
         >
-          <Bell size={16} /> 5. Clinical Alerts
+          <Bell size={15} style={{ color: activeSection === 'alerts_log' ? '#f87171' : 'inherit' }} />
+          <span>Clinical Alerts</span>
           {allAlerts.length > 0 && (
             <span style={{
               background: allAlerts.some(a => a.level === 'red') ? '#ef4444' : '#f59e0b',
               color: '#ffffff',
-              fontSize: 10,
-              padding: '1px 6px',
+              fontSize: 11,
+              padding: '1px 7px',
               borderRadius: 10,
               fontWeight: 700
             }}>
@@ -244,68 +313,79 @@ export const App: React.FC = () => {
 
         {/* Tab 6: ML Math & Diagnostics Debugger */}
         <button 
-          className={`nav-tab-btn ${activeSection === 'ml_debugger' ? 'active' : ''}`}
+          className="clean-nav-tab"
           onClick={() => setActiveSection('ml_debugger')}
-          style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 16px', borderRadius: 6, fontWeight: 600, fontSize: 13, borderColor: activeSection === 'ml_debugger' ? '#38bdf8' : undefined }}
+          style={{ 
+            background: 'none',
+            border: 'none',
+            borderBottom: activeSection === 'ml_debugger' ? '2px solid #38bdf8' : '2px solid transparent',
+            color: activeSection === 'ml_debugger' ? '#ffffff' : 'var(--text-secondary)',
+            padding: '14px 4px',
+            fontSize: 14,
+            fontWeight: activeSection === 'ml_debugger' ? 600 : 400,
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 8,
+            transition: 'all 0.15s ease'
+          }}
         >
-          <Binary size={16} style={{ color: '#38bdf8' }} /> 6. ML Model Debugger Sandbox
+          <Binary size={15} style={{ color: activeSection === 'ml_debugger' ? '#38bdf8' : 'inherit' }} />
+          <span>ML Debugger Sandbox</span>
         </button>
       </nav>
 
-      {/* Sub-navigation for Tab 2 (Predictive Intelligence) */}
+      {/* Sub-navigation for Tab 2 (Predictive Intelligence) - Clean minimal style without heavy boxes */}
       {activeSection === 'predictive_intelligence' && (
-        <div style={{ display: 'flex', gap: 10, padding: '8px 24px', background: 'rgba(15, 23, 42, 0.7)', borderBottom: '1px solid var(--border-subtle)', alignItems: 'center' }}>
-          <span style={{ fontSize: 11, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: 0.5 }}>View Mode:</span>
+        <div style={{ display: 'flex', gap: 24, padding: '10px 32px', background: 'rgba(5, 7, 10, 0.95)', borderBottom: '1px solid rgba(255, 255, 255, 0.06)', alignItems: 'center' }}>
+          <span style={{ fontSize: 11.5, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: 0.6, fontWeight: 600 }}>Mode:</span>
           <button 
             style={{
-              background: selectedSubIntelligence === 'adaptive_manifold' ? '#a855f7' : 'transparent',
-              color: '#ffffff',
-              border: '1px solid',
-              borderColor: selectedSubIntelligence === 'adaptive_manifold' ? '#a855f7' : 'var(--border-subtle)',
-              padding: '4px 12px',
-              borderRadius: 4,
-              fontSize: 12,
+              background: 'transparent',
+              color: selectedSubIntelligence === 'adaptive_manifold' ? '#c084fc' : 'var(--text-secondary)',
+              border: 'none',
+              borderBottom: selectedSubIntelligence === 'adaptive_manifold' ? '1.5px solid #a855f7' : '1.5px solid transparent',
+              padding: '4px 2px',
+              fontSize: 13,
               cursor: 'pointer',
-              fontWeight: 500
+              fontWeight: selectedSubIntelligence === 'adaptive_manifold' ? 600 : 400
             }}
             onClick={() => setSelectedSubIntelligence('adaptive_manifold')}
           >
-            Adaptive Manifold & Naive Bayes Hypotheses ($D_M$ Distance)
+            Adaptive Manifold & Bayes Hypotheses (D_M)
           </button>
           <button 
             style={{
-              background: selectedSubIntelligence === 'failure_forecast' ? '#ef4444' : 'transparent',
-              color: '#ffffff',
-              border: '1px solid',
-              borderColor: selectedSubIntelligence === 'failure_forecast' ? '#ef4444' : 'var(--border-subtle)',
-              padding: '4px 12px',
-              borderRadius: 4,
-              fontSize: 12,
+              background: 'transparent',
+              color: selectedSubIntelligence === 'failure_forecast' ? '#f87171' : 'var(--text-secondary)',
+              border: 'none',
+              borderBottom: selectedSubIntelligence === 'failure_forecast' ? '1.5px solid #ef4444' : '1.5px solid transparent',
+              padding: '4px 2px',
+              fontSize: 13,
               cursor: 'pointer',
-              fontWeight: 500
+              fontWeight: selectedSubIntelligence === 'failure_forecast' ? 600 : 400
             }}
             onClick={() => setSelectedSubIntelligence('failure_forecast')}
           >
-            Pre-Symptomatic Failure Prognostics (24-72h Trajectory)
+            Failure Prognostics (24-72h Trajectory)
           </button>
         </div>
       )}
 
-      {/* Sub-navigation for Tab 3 (Pharmacology) */}
+      {/* Sub-navigation for Tab 3 (Pharmacology) - Clean minimal style without heavy boxes */}
       {activeSection === 'pharmacology' && (
-        <div style={{ display: 'flex', gap: 10, padding: '8px 24px', background: 'rgba(15, 23, 42, 0.7)', borderBottom: '1px solid var(--border-subtle)', alignItems: 'center' }}>
-          <span style={{ fontSize: 11, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: 0.5 }}>Formulary View:</span>
+        <div style={{ display: 'flex', gap: 24, padding: '10px 32px', background: 'rgba(5, 7, 10, 0.95)', borderBottom: '1px solid rgba(255, 255, 255, 0.06)', alignItems: 'center' }}>
+          <span style={{ fontSize: 11.5, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: 0.6, fontWeight: 600 }}>Formulary View:</span>
           <button 
             style={{
-              background: selectedSubPharmacy === 'logging' ? '#0284c7' : 'transparent',
-              color: '#ffffff',
-              border: '1px solid',
-              borderColor: selectedSubPharmacy === 'logging' ? '#0284c7' : 'var(--border-subtle)',
-              padding: '4px 12px',
-              borderRadius: 4,
-              fontSize: 12,
+              background: 'transparent',
+              color: selectedSubPharmacy === 'logging' ? '#38bdf8' : 'var(--text-secondary)',
+              border: 'none',
+              borderBottom: selectedSubPharmacy === 'logging' ? '1.5px solid #38bdf8' : '1.5px solid transparent',
+              padding: '4px 2px',
+              fontSize: 13,
               cursor: 'pointer',
-              fontWeight: 500
+              fontWeight: selectedSubPharmacy === 'logging' ? 600 : 400
             }}
             onClick={() => setSelectedSubPharmacy('logging')}
           >
@@ -313,15 +393,14 @@ export const App: React.FC = () => {
           </button>
           <button 
             style={{
-              background: selectedSubPharmacy === 'outcomes' ? '#0284c7' : 'transparent',
-              color: '#ffffff',
-              border: '1px solid',
-              borderColor: selectedSubPharmacy === 'outcomes' ? '#0284c7' : 'var(--border-subtle)',
-              padding: '4px 12px',
-              borderRadius: 4,
-              fontSize: 12,
+              background: 'transparent',
+              color: selectedSubPharmacy === 'outcomes' ? '#38bdf8' : 'var(--text-secondary)',
+              border: 'none',
+              borderBottom: selectedSubPharmacy === 'outcomes' ? '1.5px solid #38bdf8' : '1.5px solid transparent',
+              padding: '4px 2px',
+              fontSize: 13,
               cursor: 'pointer',
-              fontWeight: 500
+              fontWeight: selectedSubPharmacy === 'outcomes' ? 600 : 400
             }}
             onClick={() => setSelectedSubPharmacy('outcomes')}
           >
@@ -329,15 +408,14 @@ export const App: React.FC = () => {
           </button>
           <button 
             style={{
-              background: selectedSubPharmacy === 'efficacy' ? '#0284c7' : 'transparent',
-              color: '#ffffff',
-              border: '1px solid',
-              borderColor: selectedSubPharmacy === 'efficacy' ? '#0284c7' : 'var(--border-subtle)',
-              padding: '4px 12px',
-              borderRadius: 4,
-              fontSize: 12,
+              background: 'transparent',
+              color: selectedSubPharmacy === 'efficacy' ? '#38bdf8' : 'var(--text-secondary)',
+              border: 'none',
+              borderBottom: selectedSubPharmacy === 'efficacy' ? '1.5px solid #38bdf8' : '1.5px solid transparent',
+              padding: '4px 2px',
+              fontSize: 13,
               cursor: 'pointer',
-              fontWeight: 500
+              fontWeight: selectedSubPharmacy === 'efficacy' ? 600 : 400
             }}
             onClick={() => setSelectedSubPharmacy('efficacy')}
           >
@@ -345,15 +423,14 @@ export const App: React.FC = () => {
           </button>
           <button 
             style={{
-              background: selectedSubPharmacy === 'inventory' ? '#0284c7' : 'transparent',
-              color: '#ffffff',
-              border: '1px solid',
-              borderColor: selectedSubPharmacy === 'inventory' ? '#0284c7' : 'var(--border-subtle)',
-              padding: '4px 12px',
-              borderRadius: 4,
-              fontSize: 12,
+              background: 'transparent',
+              color: selectedSubPharmacy === 'inventory' ? '#38bdf8' : 'var(--text-secondary)',
+              border: 'none',
+              borderBottom: selectedSubPharmacy === 'inventory' ? '1.5px solid #38bdf8' : '1.5px solid transparent',
+              padding: '4px 2px',
+              fontSize: 13,
               cursor: 'pointer',
-              fontWeight: 500
+              fontWeight: selectedSubPharmacy === 'inventory' ? 600 : 400
             }}
             onClick={() => setSelectedSubPharmacy('inventory')}
           >
