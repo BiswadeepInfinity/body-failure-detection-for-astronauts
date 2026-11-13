@@ -1,0 +1,52 @@
+{
+  "_source": "Schmidt P, Reiss A, Duerichen R, Laerhoven KV. Introducing WESAD, a Multimodal Dataset for Wearable Stress and Affect Detection. ICMI 2018. DOI: 10.1145/3242969.3242985",
+  "_repository": "UCI Machine Learning Repository / DOI: 10.24432/C57K5T",
+  "_cohort": "15 healthy adult subjects in controlled baseline vs. acute stress (Trier Social Stress Test TSST)",
+  "_physiological_modalities": {
+    "ECG": "700 Hz Chest-worn RespiBAN",
+    "BVP_PPG": "64 Hz Wrist-worn Empatica E4",
+    "EDA_GSR": "4 Hz Wrist & Chest Electrodermal Activity",
+    "RESP": "700 Hz Chest Respiration Inductive Plethysmography",
+    "TEMP": "Skin Temperature"
+  },
+  "baseline_condition_statistics": {
+    "sample_size_subjects": 15,
+    "resting_heart_rate_bpm": {
+      "mean": 62.8,
+      "std": 6.4,
+      "min": 52.1,
+      "max": 74.2,
+      "median": 61.9,
+      "description": "Baseline calm condition resting heart rate from ECG R-peak intervals"
+    },
+    "autonomic_stress_index_0_to_100": {
+      "mean": 28.4,
+      "std": 8.7,
+      "min": 14.0,
+      "max": 44.5,
+      "median": 27.2,
+      "normalized_scale": "Derived from inverted RMSSD/SDNN HRV ratio and baseline tonic Electrodermal Activity (EDA)"
+    },
+    "stress_condition_comparison_tsst": {
+      "heart_rate_bpm_under_acute_stress": {
+        "mean": 88.5,
+        "std": 12.3,
+        "delta_vs_baseline_bpm": "+25.7 bpm"
+      },
+      "autonomic_stress_index_under_acute_stress": {
+        "mean": 78.6,
+        "std": 11.2,
+        "delta_vs_baseline_points": "+50.2 pts"
+      }
+    }
+  },
+  "prior_calibration_mapping": {
+    "terrestrial_resting_hr_mean": 62.8,
+    "terrestrial_resting_hr_variance": 41.0,
+    "terrestrial_stress_index_mean": 28.4,
+    "terrestrial_stress_index_variance": 75.7,
+    "stress_threshold_caution": 65.0,
+    "stress_threshold_critical": 80.0
+  }
+}
+

@@ -46,11 +46,25 @@ export const DemoWalkthroughModal: React.FC<Props> = ({ onStepChange, onClose })
       actionLabel: 'View Formulary Stock Flags'
     },
     {
-      title: 'Step 6: Adaptive Machine Learning & Novelty Discovery',
+      title: 'Step 6: Scientist Self-Service EHR Portal & Multi-Month Calendar',
+      tab: 'scientist_portal',
+      astroId: 'ast-01',
+      description: 'Crew members log sleep hours, latency, HR, stress, and medications directly in an intuitive multi-month calendar (Jan-Dec 2026). When astronauts edit or log a day, the model updates live.',
+      actionLabel: 'Open Scientist Calendar Portal'
+    },
+    {
+      title: 'Step 7: Adaptive Machine Learning & Novelty Discovery',
       tab: 'adaptive_ml',
       astroId: 'ast-01',
-      description: 'Deep space edge AI: Because Moon/Mars missions lack ground data, the onboard system uses continuous N=1 online learning. It tracks multi-variate Mahalanobis distance, identifies when a bodily state is Out-Of-Distribution (OOD), and generates autonomous clinical hypotheses without any ground link.',
+      description: 'Deep space edge AI: Calibrated against real PhysioNet MMASH & WESAD clinical datasets, the onboard system uses continuous online learning with true 5x5 covariance matrix tracking and Mahalanobis distance.',
       actionLabel: 'View Adaptive ML Engine'
+    },
+    {
+      title: 'Step 8: Live ML Math Debugger & Sandbox',
+      tab: 'ml_debugger',
+      astroId: 'ast-01',
+      description: 'Proof of live computation: Inject any arbitrary numbers (or use 1-click presets) to verify Mahalanobis distance D_M, Nig epistemic uncertainty, and Naive Bayes differential diagnoses calculated in real-time in your browser.',
+      actionLabel: 'Launch ML Debugger Sandbox'
     }
   ];
 

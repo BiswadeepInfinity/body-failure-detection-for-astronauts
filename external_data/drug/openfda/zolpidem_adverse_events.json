@@ -1,0 +1,42 @@
+[
+    {
+        "term":  "DRUG INEFFECTIVE",
+        "count":  5046
+    },
+    {
+        "term":  "COMPLETED SUICIDE",
+        "count":  4467
+    },
+    {
+        "term":  "TOXICITY TO VARIOUS AGENTS",
+        "count":  4164
+    },
+    {
+        "term":  "NAUSEA",
+        "count":  4064
+    },
+    {
+        "term":  "FATIGUE",
+        "count":  3922
+    },
+    {
+        "term":  "FALL",
+        "count":  3206
+    },
+    {
+        "term":  "DIARRHOEA",
+        "count":  3072
+    },
+    {
+        "term":  "DRUG ABUSE",
+        "count":  3022
+    },
+    {
+        "term":  "HEADACHE",
+        "count":  3003
+    },
+    {
+        "term":  "INSOMNIA",
+        "count":  2845
+    }
+]

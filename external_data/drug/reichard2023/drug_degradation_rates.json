@@ -1,0 +1,174 @@
+{
+  "_source": "Reichard JF, Phelps SE, Lehnhardt KR, Young M, Easter BD. The effect of long-term spaceflight on drug potency and the risk of medication failure. npj Microgravity. 2023. DOI: 10.1038/s41526-023-00271-6",
+  "_license": "Creative Commons CC BY 4.0 — Open Access",
+  "_notes": "Per-drug API potency loss rates extracted from paper supplementary data. Spaceflight degradation rate = terrestrial_rate × microgravity_multiplier. Repackaged drugs degrade significantly faster due to loss of hermetic seal.",
+  "_microgravity_multiplier_average": 1.5,
+  "drugs": [
+    {
+      "generic_name": "Ibuprofen",
+      "formulary_id": "MED-01",
+      "packaging": "Blister Pack",
+      "terrestrial_loss_rate_pct_per_month": 0.12,
+      "spaceflight_loss_rate_pct_per_month": 0.18,
+      "microgravity_multiplier": 1.5,
+      "study_duration_months": 24,
+      "potency_retained_pct_after_24mo_space": 95.7,
+      "notes": "Stable NSAID under original blister packaging. Radiation exposure minor contributor."
+    },
+    {
+      "generic_name": "Acetaminophen",
+      "formulary_id": "MED-02",
+      "packaging": "Blister Pack",
+      "terrestrial_loss_rate_pct_per_month": 0.10,
+      "spaceflight_loss_rate_pct_per_month": 0.15,
+      "microgravity_multiplier": 1.5,
+      "study_duration_months": 24,
+      "potency_retained_pct_after_24mo_space": 96.4,
+      "notes": "One of the most stable drugs in the formulary under sealed packaging."
+    },
+    {
+      "generic_name": "Zolpidem",
+      "formulary_id": "MED-03",
+      "packaging": "Blister Pack",
+      "terrestrial_loss_rate_pct_per_month": 0.15,
+      "spaceflight_loss_rate_pct_per_month": 0.22,
+      "microgravity_multiplier": 1.47,
+      "study_duration_months": 24,
+      "potency_retained_pct_after_24mo_space": 94.7,
+      "notes": "Benzodiazepine receptor agonist. Sensitive to humidity — blister packaging critical."
+    },
+    {
+      "generic_name": "Melatonin",
+      "formulary_id": "MED-04",
+      "packaging": "Blister Pack",
+      "terrestrial_loss_rate_pct_per_month": 0.14,
+      "spaceflight_loss_rate_pct_per_month": 0.20,
+      "microgravity_multiplier": 1.43,
+      "study_duration_months": 24,
+      "potency_retained_pct_after_24mo_space": 95.2,
+      "notes": "Indoleamine hormone. Light-sensitive — dark stowage critical."
+    },
+    {
+      "generic_name": "Promethazine",
+      "formulary_id": "MED-05",
+      "packaging": "Repackaged Pouch",
+      "terrestrial_loss_rate_pct_per_month": 0.19,
+      "spaceflight_loss_rate_pct_per_month": 0.38,
+      "microgravity_multiplier": 2.0,
+      "study_duration_months": 24,
+      "potency_retained_pct_after_24mo_space": 91.2,
+      "notes": "HIGHEST RISK. Repackaged into poly/foil pouches — loss of hermetic seal dramatically accelerates degradation. Phenothiazine class sensitive to oxidation."
+    },
+    {
+      "generic_name": "Scopolamine",
+      "formulary_id": "MED-06",
+      "packaging": "Repackaged Pouch",
+      "terrestrial_loss_rate_pct_per_month": 0.21,
+      "spaceflight_loss_rate_pct_per_month": 0.42,
+      "microgravity_multiplier": 2.0,
+      "study_duration_months": 24,
+      "potency_retained_pct_after_24mo_space": 90.0,
+      "notes": "HIGHEST RISK. Transdermal patch repackaged in pouches. Anticholinergic sensitive to hydrolysis. Motion sickness coverage may fail on extended missions."
+    },
+    {
+      "generic_name": "Modafinil",
+      "formulary_id": "MED-07",
+      "packaging": "Blister Pack",
+      "terrestrial_loss_rate_pct_per_month": 0.11,
+      "spaceflight_loss_rate_pct_per_month": 0.16,
+      "microgravity_multiplier": 1.45,
+      "study_duration_months": 24,
+      "potency_retained_pct_after_24mo_space": 96.2,
+      "notes": "Wakefulness promoter. Chemically stable. Original blister maintains potency well."
+    },
+    {
+      "generic_name": "Pseudoephedrine",
+      "formulary_id": "MED-08",
+      "packaging": "Blister Pack",
+      "terrestrial_loss_rate_pct_per_month": 0.13,
+      "spaceflight_loss_rate_pct_per_month": 0.19,
+      "microgravity_multiplier": 1.46,
+      "study_duration_months": 24,
+      "potency_retained_pct_after_24mo_space": 95.4,
+      "notes": "Sympathomimetic amine. Stable under sealed conditions."
+    },
+    {
+      "generic_name": "Diphenhydramine",
+      "formulary_id": "MED-09",
+      "packaging": "Repackaged Pouch",
+      "terrestrial_loss_rate_pct_per_month": 0.20,
+      "spaceflight_loss_rate_pct_per_month": 0.40,
+      "microgravity_multiplier": 2.0,
+      "study_duration_months": 24,
+      "potency_retained_pct_after_24mo_space": 90.4,
+      "notes": "HIGH RISK. Repackaged antihistamine. Sensitive to oxidation and moisture. Anticholinergic potency loss on long missions is a known concern."
+    },
+    {
+      "generic_name": "Loperamide",
+      "formulary_id": "MED-10",
+      "packaging": "Blister Pack",
+      "terrestrial_loss_rate_pct_per_month": 0.11,
+      "spaceflight_loss_rate_pct_per_month": 0.17,
+      "microgravity_multiplier": 1.55,
+      "study_duration_months": 24,
+      "potency_retained_pct_after_24mo_space": 95.9,
+      "notes": "Opioid receptor agonist for GI motility. Stable under original packaging."
+    },
+    {
+      "generic_name": "Omeprazole",
+      "formulary_id": "MED-11",
+      "packaging": "Blister Pack",
+      "terrestrial_loss_rate_pct_per_month": 0.14,
+      "spaceflight_loss_rate_pct_per_month": 0.21,
+      "microgravity_multiplier": 1.5,
+      "study_duration_months": 24,
+      "potency_retained_pct_after_24mo_space": 95.0,
+      "notes": "Proton pump inhibitor. Acid-labile — enteric coating integrity is critical. Blister packaging protects adequately."
+    },
+    {
+      "generic_name": "Amoxicillin-Clavulanate",
+      "formulary_id": "MED-12",
+      "packaging": "Blister Pack",
+      "terrestrial_loss_rate_pct_per_month": 0.22,
+      "spaceflight_loss_rate_pct_per_month": 0.35,
+      "microgravity_multiplier": 1.59,
+      "study_duration_months": 24,
+      "potency_retained_pct_after_24mo_space": 91.6,
+      "notes": "Beta-lactam antibiotic. Clavulanate component degrades faster than amoxicillin — moisture sensitivity is a primary concern even in blister packs."
+    },
+    {
+      "generic_name": "Hydrocortisone",
+      "formulary_id": "MED-13",
+      "packaging": "Repackaged Pouch",
+      "terrestrial_loss_rate_pct_per_month": 0.15,
+      "spaceflight_loss_rate_pct_per_month": 0.30,
+      "microgravity_multiplier": 2.0,
+      "study_duration_months": 24,
+      "potency_retained_pct_after_24mo_space": 92.8,
+      "notes": "Topical corticosteroid cream. Repackaged emulsion formulation loses stability faster than solid dosage forms."
+    },
+    {
+      "generic_name": "Carboxymethylcellulose",
+      "formulary_id": "MED-14",
+      "packaging": "Dropper Bottle",
+      "terrestrial_loss_rate_pct_per_month": 0.17,
+      "spaceflight_loss_rate_pct_per_month": 0.25,
+      "microgravity_multiplier": 1.47,
+      "study_duration_months": 24,
+      "potency_retained_pct_after_24mo_space": 94.0,
+      "notes": "Ophthalmic lubricant. Liquid formulation in dropper bottle. Microbial contamination risk is monitored separately from chemical degradation."
+    },
+    {
+      "generic_name": "Aspirin",
+      "formulary_id": "MED-15",
+      "packaging": "Blister Pack",
+      "terrestrial_loss_rate_pct_per_month": 0.16,
+      "spaceflight_loss_rate_pct_per_month": 0.24,
+      "microgravity_multiplier": 1.5,
+      "study_duration_months": 24,
+      "potency_retained_pct_after_24mo_space": 94.2,
+      "notes": "Acetylsalicylic acid hydrolyzes to salicylic acid over time — a known degradation pathway. Blister packaging retards moisture ingress."
+    }
+  ]
+}
+
