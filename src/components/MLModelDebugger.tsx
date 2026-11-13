@@ -13,6 +13,7 @@ import {
   Sparkles,
   Calendar
 } from 'lucide-react';
+import { PlainEnglishInterpreter } from './PlainEnglishInterpreter';
 
 interface Props {
   astronauts: Astronaut[];
@@ -159,6 +160,9 @@ export const MLModelDebugger: React.FC<Props> = ({ astronauts }) => {
           </select>
         </div>
       </div>
+
+      {/* Plain-English Medical Interpreter Bar */}
+      <PlainEnglishInterpreter />
 
       {/* NEW: LIVE INJECTION SANDBOX (PROOF OF ALGORITHM) */}
       <div className="space-card" style={{ 

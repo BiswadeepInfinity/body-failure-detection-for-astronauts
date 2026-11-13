@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Astronaut } from '../types';
 import { DeepSpaceAdaptiveMLEngine, AnomalyScoreResult, TERRESTRIAL_PRIORS } from '../ml/adaptiveEngine';
+import { PlainEnglishInterpreter } from './PlainEnglishInterpreter';
 import { 
   BrainCircuit, 
   Cpu, 
@@ -115,6 +116,9 @@ export const AdaptiveMLScreen: React.FC<Props> = ({ astronauts }) => {
           </select>
         </div>
       </div>
+
+      {/* Plain-English Medical Interpreter Bar */}
+      <PlainEnglishInterpreter />
 
       {/* NEW: LIVE LEARNING INSPECTION PANEL */}
       <div className="space-card" style={{ 
