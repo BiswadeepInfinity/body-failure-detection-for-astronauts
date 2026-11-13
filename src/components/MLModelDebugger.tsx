@@ -10,7 +10,8 @@ import {
   Send,
   AlertTriangle,
   CheckCircle2,
-  Sparkles
+  Sparkles,
+  Calendar
 } from 'lucide-react';
 
 interface Props {
@@ -380,6 +381,62 @@ export const MLModelDebugger: React.FC<Props> = ({ astronauts }) => {
           <span>Day 1 (100% Earth Prior)</span>
           <span>Day 15 (Mid-Mission Adaptive Shift)</span>
           <span>Day 30 (92% Astronaut Custom Model)</span>
+        </div>
+
+        {/* Calendar Quick-Select Grid */}
+        <div style={{ marginTop: 12 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
+            <span style={{ fontSize: 11, color: '#e0f2fe', display: 'flex', alignItems: 'center', gap: 5 }}>
+              <Calendar size={12} style={{ color: '#38bdf8' }} /> Jump directly to any mission date on the debugger calendar:
+            </span>
+            <span style={{ fontSize: 10, color: 'var(--text-muted)' }}>
+              Blue = Active Day | Red = Anomaly Logged
+            </span>
+          </div>
+
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(15, 1fr)', 
+            gap: 4, 
+            background: 'rgba(0,0,0,0.3)', 
+            padding: 8, 
+            borderRadius: 6,
+            border: '1px solid var(--border-subtle)'
+          }}>
+            {astronaut.history.slice(0, 30).map((h) => {
+              const isSelected = h.day === dayStep;
+              const hasAnomaly = h.sleepHours < 5.0 || h.restingHeartRate > 75 || h.stressLevel > 70;
+              return (
+                <button
+                  key={h.day}
+                  onClick={() => {
+                    setDayStep(h.day);
+                    setIsPlaying(false);
+                    setInjectionResults(null);
+                  }}
+                  style={{
+                    background: isSelected 
+                      ? '#38bdf8' 
+                      : (hasAnomaly ? 'rgba(239, 68, 68, 0.2)' : 'rgba(255, 255, 255, 0.04)'),
+                    border: isSelected 
+                      ? '1px solid #ffffff' 
+                      : (hasAnomaly ? '1px solid rgba(239, 68, 68, 0.5)' : '1px solid rgba(255, 255, 255, 0.08)'),
+                    borderRadius: 4,
+                    padding: '4px 2px',
+                    color: isSelected ? '#000000' : (hasAnomaly ? '#fca5a5' : '#cbd5e1'),
+                    fontSize: 10,
+                    fontWeight: isSelected ? 800 : 500,
+                    cursor: 'pointer',
+                    textAlign: 'center',
+                    transition: 'all 0.15s ease'
+                  }}
+                  title={`Day ${h.day}: Sleep ${h.sleepHours}h, HR ${h.restingHeartRate}bpm, Stress ${h.stressLevel}`}
+                >
+                  D{h.day}
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
 

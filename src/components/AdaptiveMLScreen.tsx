@@ -10,7 +10,8 @@ import {
   CheckCircle2,
   ArrowRight,
   Play,
-  RotateCcw
+  RotateCcw,
+  Calendar
 } from 'lucide-react';
 
 interface Props {
@@ -156,11 +157,11 @@ export const AdaptiveMLScreen: React.FC<Props> = ({ astronauts }) => {
           </div>
         </div>
 
-        {/* Interactive Mission Day Scrubber */}
+        {/* Interactive Mission Day Scrubber & Calendar Quick-Select */}
         <div style={{ marginBottom: 18 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: 'var(--text-muted)', marginBottom: 4 }}>
             <span>Day 1 (Launch: 100% Earth Priors)</span>
-            <span style={{ color: '#c084fc', fontWeight: 700 }}>Scrub Position: Day {currentDayScrub}</span>
+            <span style={{ color: '#c084fc', fontWeight: 700 }}>Active Training State: Flight Day {currentDayScrub}</span>
             <span>Day 30 (92% Astronaut Custom Manifold)</span>
           </div>
           <input 
@@ -174,6 +175,61 @@ export const AdaptiveMLScreen: React.FC<Props> = ({ astronauts }) => {
             }}
             style={{ width: '100%', accentColor: '#a855f7', height: 8 }}
           />
+
+          {/* Mini Mission Calendar Day Selector Grid */}
+          <div style={{ marginTop: 12 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
+              <span style={{ fontSize: 11, color: '#e2e8f0', display: 'flex', alignItems: 'center', gap: 5 }}>
+                <Calendar size={12} style={{ color: '#c084fc' }} /> Jump directly to any mission date on the adaptive calendar:
+              </span>
+              <span style={{ fontSize: 10, color: 'var(--text-muted)' }}>
+                Green = Nominal | Red = Anomaly Detected | Purple = Active Day
+              </span>
+            </div>
+
+            <div style={{ 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(15, 1fr)', 
+              gap: 4, 
+              background: 'rgba(0,0,0,0.3)', 
+              padding: 8, 
+              borderRadius: 6,
+              border: '1px solid var(--border-subtle)'
+            }}>
+              {astronaut.history.slice(0, 30).map((h) => {
+                const isSelected = h.day === currentDayScrub;
+                const hasAnomaly = h.sleepHours < 5.0 || h.restingHeartRate > 75 || h.stressLevel > 70;
+                return (
+                  <button
+                    key={h.day}
+                    onClick={() => {
+                      setCurrentDayScrub(h.day);
+                      setIsPlaying(false);
+                    }}
+                    style={{
+                      background: isSelected 
+                        ? '#a855f7' 
+                        : (hasAnomaly ? 'rgba(239, 68, 68, 0.2)' : 'rgba(255, 255, 255, 0.04)'),
+                      border: isSelected 
+                        ? '1px solid #ffffff' 
+                        : (hasAnomaly ? '1px solid rgba(239, 68, 68, 0.5)' : '1px solid rgba(255, 255, 255, 0.08)'),
+                      borderRadius: 4,
+                      padding: '4px 2px',
+                      color: isSelected ? '#ffffff' : (hasAnomaly ? '#fca5a5' : '#cbd5e1'),
+                      fontSize: 10,
+                      fontWeight: isSelected ? 700 : 500,
+                      cursor: 'pointer',
+                      textAlign: 'center',
+                      transition: 'all 0.15s ease'
+                    }}
+                    title={`Day ${h.day}: Sleep ${h.sleepHours}h, HR ${h.restingHeartRate}bpm, Stress ${h.stressLevel}`}
+                  >
+                    D{h.day}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
 
         {/* Live Weight Ratio: Earth Priors vs Astronaut Flight Data */}
@@ -193,7 +249,7 @@ export const AdaptiveMLScreen: React.FC<Props> = ({ astronauts }) => {
           </div>
           <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 6, display: 'flex', justifyContent: 'space-between' }}>
             <span>Initial Terrestrial Ground State (MMASH / WESAD)</span>
-            <span>Formula: $(1 - \alpha)^t = (0.92)^{currentDayScrub}$</span>
+            <span>Formula: (1 - α)^t = (0.92)^{currentDayScrub}</span>
             <span>Adapted Microgravity Space Profile</span>
           </div>
         </div>
@@ -241,7 +297,7 @@ export const AdaptiveMLScreen: React.FC<Props> = ({ astronauts }) => {
         <div className="space-card" style={{ borderColor: latestEvaluation.isNovelCondition ? '#ef4444' : '#3b82f6' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
             <span className="metric-label" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-              <Compass size={14} style={{ color: '#38bdf8' }} /> True Mahalanobis Distance ($D_M$)
+              <Compass size={14} style={{ color: '#38bdf8' }} /> True Mahalanobis Distance (D_M)
             </span>
             <span style={{
               fontSize: 10,
@@ -281,7 +337,7 @@ export const AdaptiveMLScreen: React.FC<Props> = ({ astronauts }) => {
             </div>
           </div>
           <div style={{ fontSize: 11, color: 'var(--text-secondary)' }}>
-            $\chi^2_5$ distribution test: Evaluates if bodily pattern has occurred in mission history.
+            Chi-sq (dof=5) distribution test: Evaluates if bodily pattern has occurred in mission history.
           </div>
         </div>
 
