@@ -192,24 +192,24 @@ export const AdaptiveMLScreen: React.FC<Props> = ({ astronauts }) => {
           />
 
           {/* Mini Mission Calendar Day Selector Grid */}
-          <div style={{ marginTop: 12 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-              <span style={{ fontSize: 11, color: '#e2e8f0', display: 'flex', alignItems: 'center', gap: 5 }}>
-                <Calendar size={12} style={{ color: '#c084fc' }} /> Jump directly to any mission date on the adaptive calendar:
+          <div style={{ marginTop: 14 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+              <span style={{ fontSize: 12, color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: 6 }}>
+                <Calendar size={13} style={{ color: '#ffffff' }} /> Mission Date Telemetry:
               </span>
-              <span style={{ fontSize: 10, color: 'var(--text-muted)' }}>
-                Green = Nominal | Red = Anomaly Detected | Purple = Active Day
+              <span style={{ fontSize: 11, color: 'var(--text-muted)' }}>
+                Click any day to jump timeline
               </span>
             </div>
 
             <div style={{ 
               display: 'grid', 
               gridTemplateColumns: 'repeat(15, 1fr)', 
-              gap: 4, 
-              background: 'rgba(0,0,0,0.3)', 
-              padding: 8, 
-              borderRadius: 6,
-              border: '1px solid var(--border-subtle)'
+              gap: 6, 
+              background: 'rgba(0, 0, 0, 0.25)', 
+              padding: 10, 
+              borderRadius: 14,
+              border: '1px solid rgba(255, 255, 255, 0.06)'
             }}>
               {astronaut.history.slice(0, 30).map((h) => {
                 const isSelected = h.day === currentDayScrub;
@@ -223,15 +223,15 @@ export const AdaptiveMLScreen: React.FC<Props> = ({ astronauts }) => {
                     }}
                     style={{
                       background: isSelected 
-                        ? '#a855f7' 
-                        : (hasAnomaly ? 'rgba(239, 68, 68, 0.2)' : 'rgba(255, 255, 255, 0.04)'),
+                        ? '#ffffff' 
+                        : (hasAnomaly ? 'rgba(239, 68, 68, 0.12)' : 'rgba(255, 255, 255, 0.02)'),
                       border: isSelected 
                         ? '1px solid #ffffff' 
-                        : (hasAnomaly ? '1px solid rgba(239, 68, 68, 0.5)' : '1px solid rgba(255, 255, 255, 0.08)'),
-                      borderRadius: 4,
-                      padding: '4px 2px',
-                      color: isSelected ? '#ffffff' : (hasAnomaly ? '#fca5a5' : '#cbd5e1'),
-                      fontSize: 10,
+                        : (hasAnomaly ? '1px solid rgba(239, 68, 68, 0.3)' : '1px solid rgba(255, 255, 255, 0.05)'),
+                      borderRadius: 8,
+                      padding: '6px 2px',
+                      color: isSelected ? '#000000' : (hasAnomaly ? '#fca5a5' : 'var(--text-secondary)'),
+                      fontSize: 11,
                       fontWeight: isSelected ? 700 : 500,
                       cursor: 'pointer',
                       textAlign: 'center',

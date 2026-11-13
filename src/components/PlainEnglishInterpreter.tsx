@@ -124,37 +124,38 @@ export const PlainEnglishInterpreter: React.FC<PlainEnglishInterpreterProps> = (
   }
 
   return (
-    <div className="space-card" style={{
-      background: 'linear-gradient(135deg, rgba(8, 47, 73, 0.45) 0%, rgba(15, 23, 42, 0.85) 100%)',
-      borderColor: 'rgba(56, 189, 248, 0.4)',
-      padding: '22px 26px',
-      marginBottom: 24,
-      borderRadius: 12
+    <div style={{
+      background: 'rgba(255, 255, 255, 0.02)',
+      border: '1px solid rgba(255, 255, 255, 0.08)',
+      backdropFilter: 'blur(20px)',
+      WebkitBackdropFilter: 'blur(20px)',
+      padding: '24px 28px',
+      marginBottom: 28,
+      borderRadius: 20
     }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16, flexWrap: 'wrap', gap: 12 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 18, flexWrap: 'wrap', gap: 14 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <div style={{
-            background: 'rgba(56, 189, 248, 0.15)',
-            border: '1px solid rgba(56, 189, 248, 0.35)',
-            borderRadius: 8,
-            padding: '6px 12px',
-            color: '#38bdf8',
+            background: 'rgba(255, 255, 255, 0.06)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            borderRadius: 999,
+            padding: '5px 14px',
+            color: '#f8fafc',
             display: 'flex',
             alignItems: 'center',
             gap: 8,
-            fontSize: 12.5,
-            fontWeight: 700,
-            textTransform: 'uppercase',
-            letterSpacing: '0.4px'
+            fontSize: 12,
+            fontWeight: 600,
+            letterSpacing: '0.3px'
           }}>
-            <Stethoscope size={16} /> Plain-English Medical Interpreter
+            <Stethoscope size={15} style={{ color: '#ffffff' }} /> Plain-English Interpreter
           </div>
-          <span style={{ fontSize: 13.5, color: 'var(--text-secondary)' }}>
-            Translating complex math into plain astronaut & flight surgeon language
+          <span style={{ fontSize: 13, color: 'var(--text-secondary)' }}>
+            Plain astronaut & flight surgeon translation
           </span>
         </div>
 
-        {/* Term Switcher Buttons with generous padding */}
+        {/* Term Switcher Buttons - Clean Liquid Glass Pills */}
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           {Object.entries(ML_GLOSSARY).map(([key, item]) => {
             const isSelected = key === selectedKey;
@@ -163,13 +164,13 @@ export const PlainEnglishInterpreter: React.FC<PlainEnglishInterpreterProps> = (
                 key={key}
                 onClick={() => setSelectedKey(key)}
                 style={{
-                  background: isSelected ? '#38bdf8' : 'rgba(255, 255, 255, 0.06)',
-                  border: isSelected ? '1px solid #ffffff' : '1px solid var(--border-subtle)',
-                  color: isSelected ? '#000000' : 'var(--text-main)',
-                  padding: '7px 14px',
-                  borderRadius: 6,
+                  background: isSelected ? 'rgba(255, 255, 255, 0.15)' : 'rgba(255, 255, 255, 0.03)',
+                  border: isSelected ? '1px solid rgba(255, 255, 255, 0.25)' : '1px solid rgba(255, 255, 255, 0.06)',
+                  color: isSelected ? '#ffffff' : 'var(--text-secondary)',
+                  padding: '6px 16px',
+                  borderRadius: 999,
                   fontSize: 12.5,
-                  fontWeight: isSelected ? 700 : 500,
+                  fontWeight: isSelected ? 600 : 400,
                   cursor: 'pointer',
                   transition: 'all 0.15s ease'
                 }}
@@ -181,35 +182,35 @@ export const PlainEnglishInterpreter: React.FC<PlainEnglishInterpreterProps> = (
         </div>
       </div>
 
-      {/* Selected Term Detail Box with generous text and spacing */}
+      {/* Selected Term Detail Box with Liquid Glass Tint */}
       <div style={{
-        background: 'rgba(0, 0, 0, 0.45)',
-        border: '1px solid var(--border-subtle)',
-        borderRadius: 10,
-        padding: '18px 22px',
+        background: 'rgba(0, 0, 0, 0.3)',
+        border: '1px solid rgba(255, 255, 255, 0.06)',
+        borderRadius: 14,
+        padding: '20px 24px',
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-        gap: 24
+        gap: 28
       }}>
         <div>
-          <div style={{ fontSize: 12, color: '#38bdf8', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.4px', marginBottom: 4 }}>
-            Engineering & ML Term:
+          <div style={{ fontSize: 11.5, color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 600, letterSpacing: '0.5px', marginBottom: 4 }}>
+            Technical Concept:
           </div>
-          <div style={{ fontSize: 17, fontWeight: 700, color: '#ffffff', display: 'flex', alignItems: 'center', gap: 8 }}>
-            {current.mlTerm} {current.mathSymbol && <span style={{ color: '#c084fc', fontFamily: 'var(--font-mono)', fontSize: 14 }}>({current.mathSymbol})</span>}
+          <div style={{ fontSize: 17, fontWeight: 600, color: '#ffffff', display: 'flex', alignItems: 'center', gap: 8 }}>
+            {current.mlTerm} {current.mathSymbol && <span style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)', fontSize: 13.5 }}>({current.mathSymbol})</span>}
           </div>
 
-          <div style={{ fontSize: 12, color: '#34d399', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.4px', marginTop: 14, marginBottom: 4 }}>
-            Plain-English Medical Meaning:
+          <div style={{ fontSize: 11.5, color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 600, letterSpacing: '0.5px', marginTop: 16, marginBottom: 4 }}>
+            Medical Meaning:
           </div>
           <div style={{ fontSize: 14, color: '#f1f5f9', lineHeight: 1.6 }}>
             {current.plainEnglishExplanation}
           </div>
         </div>
 
-        <div style={{ borderLeft: '1px solid rgba(255, 255, 255, 0.12)', paddingLeft: 22 }}>
-          <div style={{ fontSize: 12, color: '#fbbf24', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.4px', marginBottom: 4 }}>
-            Why This Matters for Crew Safety in Deep Space:
+        <div style={{ borderLeft: '1px solid rgba(255, 255, 255, 0.06)', paddingLeft: 28 }}>
+          <div style={{ fontSize: 11.5, color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 600, letterSpacing: '0.5px', marginBottom: 4 }}>
+            Why This Matters for Crew Safety:
           </div>
           <div style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.6 }}>
             {current.whyItMattersInSpace}
@@ -217,26 +218,26 @@ export const PlainEnglishInterpreter: React.FC<PlainEnglishInterpreterProps> = (
         </div>
       </div>
 
-      {/* Dynamic Live Flight Surgeon Narrative (Computed directly from real-time streaming biometrics) */}
+      {/* Dynamic Live Flight Surgeon Narrative */}
       {dynamicDoctorVerdict && (
         <div style={{
-          marginTop: 16,
-          background: dynamicDoctorVerdict.severity === 'critical' ? 'rgba(239, 68, 68, 0.15)' : (dynamicDoctorVerdict.severity === 'warning' ? 'rgba(245, 158, 11, 0.15)' : 'rgba(16, 185, 129, 0.12)'),
-          border: `1px solid ${dynamicDoctorVerdict.severity === 'critical' ? 'rgba(239, 68, 68, 0.45)' : (dynamicDoctorVerdict.severity === 'warning' ? 'rgba(245, 158, 11, 0.4)' : 'rgba(16, 185, 129, 0.35)')}`,
-          borderRadius: 8,
-          padding: '12px 16px',
+          marginTop: 18,
+          background: dynamicDoctorVerdict.severity === 'critical' ? 'rgba(239, 68, 68, 0.1)' : 'rgba(255, 255, 255, 0.03)',
+          border: `1px solid ${dynamicDoctorVerdict.severity === 'critical' ? 'rgba(239, 68, 68, 0.3)' : 'rgba(255, 255, 255, 0.08)'}`,
+          borderRadius: 14,
+          padding: '14px 20px',
           display: 'flex',
           flexDirection: 'column',
           gap: 4
         }}>
           <div style={{
             fontSize: 13,
-            fontWeight: 700,
-            color: dynamicDoctorVerdict.severity === 'critical' ? '#fca5a5' : (dynamicDoctorVerdict.severity === 'warning' ? '#fde68a' : '#6ee7b7')
+            fontWeight: 600,
+            color: dynamicDoctorVerdict.severity === 'critical' ? '#fca5a5' : '#ffffff'
           }}>
-            👨‍⚕️ Live Case Summary: {dynamicDoctorVerdict.headline}
+            👨‍⚕️ Real-time Diagnostic Evaluation: {dynamicDoctorVerdict.headline}
           </div>
-          <div style={{ fontSize: 13, color: '#f8fafc', lineHeight: 1.5 }}>
+          <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.5 }}>
             {dynamicDoctorVerdict.explanation}
           </div>
         </div>
