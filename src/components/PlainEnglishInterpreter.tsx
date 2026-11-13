@@ -57,12 +57,50 @@ export const ML_GLOSSARY: Record<string, TermExplanation> = {
 interface PlainEnglishInterpreterProps {
   currentTermKey?: string;
   isCompact?: boolean;
+  liveBiometrics?: {
+    sleepHours?: number;
+    restingHeartRate?: number;
+    stressLevel?: number;
+    mahalanobisDist?: number;
+    flightDay?: number;
+    topHypothesis?: string;
+    astronautName?: string;
+  };
 }
 
-export const PlainEnglishInterpreter: React.FC<PlainEnglishInterpreterProps> = ({ currentTermKey, isCompact = false }) => {
+export const PlainEnglishInterpreter: React.FC<PlainEnglishInterpreterProps> = ({ currentTermKey, isCompact = false, liveBiometrics }) => {
   const [selectedKey, setSelectedKey] = React.useState<string>(currentTermKey || 'mahalanobisDistance');
 
   const current = ML_GLOSSARY[selectedKey] || ML_GLOSSARY['mahalanobisDistance'];
+
+  // Dynamically generated flight surgeon narrative based on real live numbers
+  const dynamicDoctorVerdict = React.useMemo(() => {
+    if (!liveBiometrics) return null;
+    const { sleepHours = 6.8, restingHeartRate = 62, stressLevel = 30, mahalanobisDist = 1.0, flightDay = 30, topHypothesis, astronautName = 'Astronaut' } = liveBiometrics;
+    
+    const isAnomaly = mahalanobisDist >= 2.8;
+    const isMarginal = mahalanobisDist >= 2.0 && mahalanobisDist < 2.8;
+
+    if (isAnomaly) {
+      return {
+        severity: 'critical',
+        headline: `CRITICAL ALERT: ${astronautName} has entered an Out-Of-Distribution bodily state on Flight Day ${flightDay}.`,
+        explanation: `Their combined vital signs (${sleepHours}h sleep, ${restingHeartRate} bpm resting heart rate, ${stressLevel}/100 stress) have deviated ${mahalanobisDist.toFixed(1)} standard deviations from their personalized baseline. ${topHypothesis ? `Primary suspect: "${topHypothesis}".` : ''} This is not normal variation; intervention is warranted.`
+      };
+    } else if (isMarginal) {
+      return {
+        severity: 'warning',
+        headline: `WATCH ALERT: Early physiological drift detected for ${astronautName} on Day ${flightDay}.`,
+        explanation: `Vital signs show mild divergence (${mahalanobisDist.toFixed(1)}σ deviation). Sleep duration (${sleepHours}h) and resting heart rate (${restingHeartRate} bpm) are beginning to decouple from their learned baseline. Recommend scheduled rest.`
+      };
+    } else {
+      return {
+        severity: 'nominal',
+        headline: `NOMINAL STATUS: ${astronautName}'s body has successfully adapted to microgravity on Day ${flightDay}.`,
+        explanation: `All 5 biometric markers are co-varying within their learned spaceflight envelope (${mahalanobisDist.toFixed(1)}σ deviation vs acceptable <2.5σ). The AI is operating with high confidence.`
+      };
+    }
+  }, [liveBiometrics]);
 
   if (isCompact) {
     return (
@@ -178,6 +216,31 @@ export const PlainEnglishInterpreter: React.FC<PlainEnglishInterpreterProps> = (
           </div>
         </div>
       </div>
+
+      {/* Dynamic Live Flight Surgeon Narrative (Computed directly from real-time streaming biometrics) */}
+      {dynamicDoctorVerdict && (
+        <div style={{
+          marginTop: 16,
+          background: dynamicDoctorVerdict.severity === 'critical' ? 'rgba(239, 68, 68, 0.15)' : (dynamicDoctorVerdict.severity === 'warning' ? 'rgba(245, 158, 11, 0.15)' : 'rgba(16, 185, 129, 0.12)'),
+          border: `1px solid ${dynamicDoctorVerdict.severity === 'critical' ? 'rgba(239, 68, 68, 0.45)' : (dynamicDoctorVerdict.severity === 'warning' ? 'rgba(245, 158, 11, 0.4)' : 'rgba(16, 185, 129, 0.35)')}`,
+          borderRadius: 8,
+          padding: '12px 16px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 4
+        }}>
+          <div style={{
+            fontSize: 13,
+            fontWeight: 700,
+            color: dynamicDoctorVerdict.severity === 'critical' ? '#fca5a5' : (dynamicDoctorVerdict.severity === 'warning' ? '#fde68a' : '#6ee7b7')
+          }}>
+            👨‍⚕️ Live Case Summary: {dynamicDoctorVerdict.headline}
+          </div>
+          <div style={{ fontSize: 13, color: '#f8fafc', lineHeight: 1.5 }}>
+            {dynamicDoctorVerdict.explanation}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

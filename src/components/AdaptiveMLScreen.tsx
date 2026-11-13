@@ -117,8 +117,18 @@ export const AdaptiveMLScreen: React.FC<Props> = ({ astronauts }) => {
         </div>
       </div>
 
-      {/* Plain-English Medical Interpreter Bar */}
-      <PlainEnglishInterpreter />
+      {/* Plain-English Medical Interpreter Bar with Live Biometrics Context */}
+      <PlainEnglishInterpreter 
+        liveBiometrics={{
+          sleepHours: historySubset[historySubset.length - 1]?.sleepHours,
+          restingHeartRate: historySubset[historySubset.length - 1]?.restingHeartRate,
+          stressLevel: historySubset[historySubset.length - 1]?.stressLevel,
+          mahalanobisDist: latestEvaluation?.mahalanobisDistance,
+          flightDay: currentDayScrub,
+          topHypothesis: latestEvaluation?.rankedHypotheses?.[0]?.title,
+          astronautName: astronaut.name
+        }}
+      />
 
       {/* NEW: LIVE LEARNING INSPECTION PANEL */}
       <div className="space-card" style={{ 

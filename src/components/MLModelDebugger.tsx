@@ -161,8 +161,18 @@ export const MLModelDebugger: React.FC<Props> = ({ astronauts }) => {
         </div>
       </div>
 
-      {/* Plain-English Medical Interpreter Bar */}
-      <PlainEnglishInterpreter />
+      {/* Plain-English Medical Interpreter Bar with Live Injected State */}
+      <PlainEnglishInterpreter 
+        liveBiometrics={{
+          sleepHours: injectionResults ? customInput.sleepHours : currentReading?.sleepHours,
+          restingHeartRate: injectionResults ? customInput.restingHeartRate : currentReading?.restingHeartRate,
+          stressLevel: injectionResults ? customInput.stressLevel : currentReading?.stressLevel,
+          mahalanobisDist: injectionResults ? injectionResults.evaluation.mahalanobisDistance : evalResult.mahalanobisDistance,
+          flightDay: dayStep,
+          topHypothesis: injectionResults ? injectionResults.evaluation.rankedHypotheses?.[0]?.title : evalResult.rankedHypotheses?.[0]?.title,
+          astronautName: astronaut.name
+        }}
+      />
 
       {/* NEW: LIVE INJECTION SANDBOX (PROOF OF ALGORITHM) */}
       <div className="space-card" style={{ 
