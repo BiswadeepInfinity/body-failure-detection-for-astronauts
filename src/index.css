@@ -230,25 +230,41 @@ body.dark-space-theme {
   color: var(--status-red);
 }
 
-/* Liquid Glass Cards */
+/* Cozy Spacecraft Avionics Glass Panels */
 .space-card {
-  background: var(--bg-card);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--border-glass);
-  border-radius: 20px;
-  padding: 26px;
+  background: linear-gradient(135deg, rgba(16, 25, 46, 0.65) 0%, rgba(9, 14, 28, 0.75) 100%);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(56, 189, 248, 0.18);
+  border-radius: 24px;
+  padding: 28px;
   box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+    0 16px 40px rgba(0, 0, 0, 0.55),
+    0 0 24px rgba(56, 189, 248, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 0 20px rgba(56, 189, 248, 0.03);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.space-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.4), transparent);
 }
 
 .space-card:hover {
-  border-color: var(--border-glass-highlight);
+  border-color: rgba(56, 189, 248, 0.35);
   box-shadow: 
-    0 12px 40px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    0 20px 50px rgba(0, 0, 0, 0.65),
+    0 0 32px rgba(56, 189, 248, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
 }
 
 /* Grid Layouts with Generous Spacing */
@@ -281,22 +297,33 @@ body.dark-space-theme {
   }
 }
 
-/* Metric Display Blocks with Liquid Glass Styling */
+/* Metric Display Blocks with Space Telemetry Gauges */
 .metric-box {
-  background: rgba(12, 17, 28, 0.5);
-  backdrop-filter: blur(12px);
-  border: 1px solid var(--border-glass);
-  border-radius: 16px;
-  padding: 20px 22px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  background: linear-gradient(180deg, rgba(14, 22, 38, 0.6) 0%, rgba(8, 13, 24, 0.7) 100%);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(56, 189, 248, 0.14);
+  border-radius: 18px;
+  padding: 18px 22px;
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 0 12px rgba(56, 189, 248, 0.02);
+  transition: border-color 0.2s ease;
+}
+
+.metric-box:hover {
+  border-color: rgba(56, 189, 248, 0.28);
 }
 
 .metric-label {
-  font-size: 13.5px;
-  color: var(--text-secondary);
+  font-size: 11.5px;
+  color: #7dd3fc;
   text-transform: uppercase;
-  letter-spacing: 0.6px;
-  font-weight: 600;
+  letter-spacing: 0.8px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .metric-val {
@@ -386,28 +413,37 @@ textarea:focus {
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.08);
 }
 
-/* Mini Trend Bar Chart */
+/* Spaceflight Telemetry Sparkline Bar Chart */
 .mini-chart {
   display: flex;
   align-items: flex-end;
-  gap: 4px;
-  height: 54px;
-  padding-top: 8px;
+  gap: 6px;
+  height: 52px;
+  background: rgba(10, 16, 28, 0.45);
+  border: 1px solid rgba(56, 189, 248, 0.1);
+  border-radius: 10px;
+  padding: 8px 10px 4px 10px;
 }
 
 .chart-bar {
   flex: 1;
-  background: rgba(255, 255, 255, 0.25);
+  background: linear-gradient(180deg, #38bdf8 0%, rgba(56, 189, 248, 0.35) 100%);
   border-radius: 4px 4px 0 0;
-  min-height: 5px;
+  min-height: 6px;
+  transition: all 0.2s ease;
+}
+
+.chart-bar:hover {
+  filter: brightness(1.25);
 }
 
 .chart-bar.critical {
-  background: var(--status-red);
+  background: linear-gradient(180deg, #f87171 0%, rgba(248, 113, 113, 0.4) 100%);
+  box-shadow: 0 0 10px rgba(248, 113, 113, 0.35);
 }
 
 .chart-bar.below-baseline {
-  background: var(--status-yellow);
+  background: linear-gradient(180deg, #fbbf24 0%, rgba(251, 191, 36, 0.4) 100%);
 }
 
 /* Modal Overlay */
