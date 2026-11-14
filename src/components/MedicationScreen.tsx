@@ -69,33 +69,42 @@ export const MedicationScreen: React.FC<Props> = ({
   };
 
   return (
-    <div>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
       {/* Top Banner */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
+      <div style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'flex-end',
+        flexWrap: 'wrap',
+        gap: 16,
+        paddingBottom: 16,
+        borderBottom: '1px solid rgba(56, 189, 248, 0.12)'
+      }}>
         <div>
-          <h2 style={{ fontSize: 18, fontWeight: 600, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: 10 }}>
-            <Pill size={20} style={{ color: '#38bdf8' }} /> Crew Medication Administration & Safety Engine
-          </h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: 13 }}>
-            Patient: <strong>{astronaut.name}</strong> ({astronaut.role}) · ISS Medical Kit Formulary Verification
-          </p>
+          <div className="section-title amber">PHARMACOVIGILANCE · SPACE MEDICAL KIT ENGINE</div>
+          <div className="section-subheading" style={{ marginTop: 4 }}>
+            Medication Administration & Safety Screen
+          </div>
+          <div style={{ color: 'var(--text-secondary)', fontSize: 13, marginTop: 4, fontFamily: 'var(--font-mono)' }}>
+            Patient: <strong style={{ color: '#fff' }}>{astronaut.name}</strong> ({astronaut.role}) · ISS Medical Formulary Safety Protocol
+          </div>
         </div>
         <StatusBadge level={astronaut.overallStatus} />
       </div>
 
       {/* Critical Interaction Warning if already active */}
       {astronaut.recentAlerts.some(a => a.category === 'medication' && a.level === 'red') && (
-        <div className="alert-strip red" style={{ marginBottom: 20 }}>
+        <div className="alert-strip red" style={{ borderRadius: 'var(--radius-md)', padding: 18 }}>
           <AlertOctagon size={24} style={{ color: '#f87171', flexShrink: 0 }} />
           <div>
-            <strong style={{ fontSize: 14, color: '#fca5a5' }}>
+            <strong style={{ fontSize: 14, color: '#fca5a5', fontFamily: 'var(--font-mono)' }}>
               CRITICAL FORMULARY ALERT: DUAL CNS DEPRESSION PROTOCOL VIOLATION
             </strong>
-            <p style={{ fontSize: 12, color: '#ffffff', marginTop: 4 }}>
+            <p style={{ fontSize: 13, color: '#ffffff', marginTop: 4 }}>
               Active administration of <strong>Zolpidem (Hypnotic)</strong> and <strong>Promethazine (Antiemetic)</strong> concurrently violates NASA ISS Medical Kit Safety Checklist: <em>"Do not use with sleep meds."</em>
             </p>
-            <p style={{ fontSize: 11, color: '#fca5a5', marginTop: 4 }}>
-              Recommendation: Flight surgeon override required. Monitor pulse oximetry for respiratory depression.
+            <p style={{ fontSize: 11.5, color: '#fca5a5', marginTop: 4, fontFamily: 'var(--font-mono)' }}>
+              RECOMMENDATION: Flight surgeon override required. Monitor pulse oximetry for respiratory depression.
             </p>
           </div>
         </div>
@@ -104,14 +113,17 @@ export const MedicationScreen: React.FC<Props> = ({
       <div className="grid-2">
         {/* Left Column: Dose Logging & Instant Interaction Verifier */}
         <div className="space-card">
-          <h3 style={{ fontSize: 15, fontWeight: 600, color: '#ffffff', marginBottom: 14, display: 'flex', alignItems: 'center', gap: 6 }}>
-            <PlusCircle size={16} style={{ color: '#38bdf8' }} /> Log Dose & Pre-Screen Drug Interactions
-          </h3>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
+            <PlusCircle size={15} style={{ color: 'var(--cyan)' }} />
+            <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)' }}>
+              Log Administration & Pre-Screen Interactions
+            </span>
+          </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             <div>
-              <label style={{ display: 'block', fontSize: 12, color: 'var(--text-secondary)', marginBottom: 4 }}>
-                Select Medication from Medical Kit:
+              <label style={{ display: 'block', fontSize: 11.5, color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)', marginBottom: 6 }}>
+                SELECT MEDICATION FROM MEDICAL KIT:
               </label>
               <select 
                 value={selectedDrug}
@@ -121,12 +133,13 @@ export const MedicationScreen: React.FC<Props> = ({
                 }}
                 style={{
                   width: '100%',
-                  background: 'var(--bg-surface)',
+                  background: 'rgba(8, 14, 26, 0.85)',
                   color: '#ffffff',
-                  border: '1px solid var(--border-subtle)',
-                  borderRadius: 6,
-                  padding: '8px 12px',
-                  fontSize: 13
+                  border: '1px solid rgba(56, 189, 248, 0.25)',
+                  borderRadius: 'var(--radius-sm)',
+                  padding: '10px 14px',
+                  fontSize: 13,
+                  outline: 'none'
                 }}
               >
                 <option value="Promethazine">Phenergan (Promethazine) - Antiemetic (Sedating)</option>
@@ -140,8 +153,8 @@ export const MedicationScreen: React.FC<Props> = ({
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
               <div>
-                <label style={{ display: 'block', fontSize: 12, color: 'var(--text-secondary)', marginBottom: 4 }}>
-                  Dose:
+                <label style={{ display: 'block', fontSize: 11.5, color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)', marginBottom: 6 }}>
+                  DOSAGE:
                 </label>
                 <input 
                   type="text" 
@@ -149,29 +162,40 @@ export const MedicationScreen: React.FC<Props> = ({
                   onChange={(e) => setSelectedDose(e.target.value)}
                   style={{
                     width: '100%',
-                    background: 'var(--bg-surface)',
+                    background: 'rgba(8, 14, 26, 0.85)',
                     color: '#ffffff',
-                    border: '1px solid var(--border-subtle)',
-                    borderRadius: 6,
-                    padding: '8px 12px',
+                    border: '1px solid rgba(56, 189, 248, 0.25)',
+                    borderRadius: 'var(--radius-sm)',
+                    padding: '10px 14px',
                     fontSize: 13
                   }}
                 />
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: 12, color: 'var(--text-secondary)', marginBottom: 4 }}>
-                  Time of Administration:
+                <label style={{ display: 'block', fontSize: 11.5, color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)', marginBottom: 6 }}>
+                  TIMESTAMP:
                 </label>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'var(--bg-surface)', padding: '8px 12px', borderRadius: 6, border: '1px solid var(--border-subtle)', fontSize: 13, color: 'var(--text-muted)' }}>
-                  <Clock size={14} /> MET Day {astronaut.missionDay} 22:45
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 8,
+                  background: 'rgba(6, 10, 20, 0.7)',
+                  padding: '10px 14px',
+                  borderRadius: 'var(--radius-sm)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  fontSize: 12.5,
+                  color: 'var(--text-secondary)',
+                  fontFamily: 'var(--font-mono)'
+                }}>
+                  <Clock size={14} style={{ color: 'var(--cyan)' }} /> FD {astronaut.missionDay} 22:45 UTC
                 </div>
               </div>
             </div>
 
             <div>
-              <label style={{ display: 'block', fontSize: 12, color: 'var(--text-secondary)', marginBottom: 4 }}>
-                Clinical Indication / Reason:
+              <label style={{ display: 'block', fontSize: 11.5, color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)', marginBottom: 6 }}>
+                CLINICAL INDICATION / REASON:
               </label>
               <input 
                 type="text" 
@@ -179,11 +203,11 @@ export const MedicationScreen: React.FC<Props> = ({
                 onChange={(e) => setLogNotes(e.target.value)}
                 style={{
                   width: '100%',
-                  background: 'var(--bg-surface)',
+                  background: 'rgba(8, 14, 26, 0.85)',
                   color: '#ffffff',
-                  border: '1px solid var(--border-subtle)',
-                  borderRadius: 6,
-                  padding: '8px 12px',
+                  border: '1px solid rgba(56, 189, 248, 0.25)',
+                  borderRadius: 'var(--radius-sm)',
+                  padding: '10px 14px',
                   fontSize: 13
                 }}
               />
@@ -194,42 +218,42 @@ export const MedicationScreen: React.FC<Props> = ({
               <div style={{
                 background: interactionResult.severity === 'red' ? 'var(--status-red-bg)' : (interactionResult.severity === 'yellow' ? 'var(--status-yellow-bg)' : 'var(--status-green-bg)'),
                 border: `1px solid ${interactionResult.severity === 'red' ? 'var(--status-red-border)' : (interactionResult.severity === 'yellow' ? 'var(--status-yellow-border)' : 'var(--status-green-border)')}`,
-                borderRadius: 6,
-                padding: '12px'
+                borderRadius: 'var(--radius-sm)',
+                padding: '14px 16px'
               }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-                  {interactionResult.severity === 'red' && <ShieldAlert size={16} style={{ color: '#ef4444' }} />}
-                  {interactionResult.severity === 'yellow' && <ShieldAlert size={16} style={{ color: '#f59e0b' }} />}
-                  {interactionResult.severity === 'none' && <CheckCircle size={16} style={{ color: '#10b981' }} />}
-                  <strong style={{ fontSize: 12, color: interactionResult.severity === 'red' ? '#fca5a5' : (interactionResult.severity === 'yellow' ? '#fcd34d' : '#6ee7b7') }}>
-                    {interactionResult.severity === 'red' ? 'CRITICAL CONTRAINDICATION DETECTED' : (interactionResult.severity === 'yellow' ? 'CAUTIONARY INTERACTION DETECTED' : 'SAFETY CHECK PASSED')}
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+                  {interactionResult.severity === 'red' && <ShieldAlert size={16} style={{ color: '#f87171' }} />}
+                  {interactionResult.severity === 'yellow' && <ShieldAlert size={16} style={{ color: '#fbbf24' }} />}
+                  {interactionResult.severity === 'none' && <CheckCircle size={16} style={{ color: '#34d399' }} />}
+                  <strong style={{ fontSize: 12, fontFamily: 'var(--font-mono)', color: interactionResult.severity === 'red' ? '#fca5a5' : (interactionResult.severity === 'yellow' ? '#fcd34d' : '#6ee7b7') }}>
+                    {interactionResult.severity === 'red' ? 'CRITICAL CONTRAINDICATION DETECTED' : (interactionResult.severity === 'yellow' ? 'CAUTIONARY INTERACTION DETECTED' : 'SAFETY PROTOCOL VERIFIED')}
                   </strong>
                 </div>
-                <div style={{ fontSize: 12, color: '#ffffff' }}>
+                <div style={{ fontSize: 13, color: '#ffffff', lineHeight: 1.4 }}>
                   {interactionResult.message}
                 </div>
                 {interactionResult.rule && (
-                  <div style={{ fontSize: 10, color: 'var(--text-muted)', marginTop: 4, fontFamily: 'var(--font-mono)' }}>
-                    Ref: {interactionResult.rule}
+                  <div style={{ fontSize: 10.5, color: 'var(--text-muted)', marginTop: 6, fontFamily: 'var(--font-mono)' }}>
+                    REF: {interactionResult.rule}
                   </div>
                 )}
               </div>
             )}
 
-            <div style={{ display: 'flex', gap: 10 }}>
+            <div style={{ display: 'flex', gap: 12, marginTop: 4 }}>
               <button 
                 type="button" 
                 className="btn-secondary" 
                 onClick={() => handleSimulateCheck(selectedDrug)}
-                style={{ flex: 1 }}
+                style={{ flex: 1, justifyContent: 'center', borderRadius: 999 }}
               >
-                Pre-Check Interaction
+                Pre-Check Safety
               </button>
               <button 
                 type="button" 
                 className="btn-primary" 
                 onClick={handleExecuteLog}
-                style={{ flex: 1 }}
+                style={{ flex: 1, justifyContent: 'center', borderRadius: 999 }}
               >
                 Log Administration
               </button>
@@ -238,34 +262,46 @@ export const MedicationScreen: React.FC<Props> = ({
         </div>
 
         {/* Right Column: Active Schedule & Side Effect Check-in */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-          {/* Today's Schedule */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+          {/* Active Schedule */}
           <div className="space-card">
-            <h3 style={{ fontSize: 15, fontWeight: 600, color: '#ffffff', marginBottom: 12, display: 'flex', alignItems: 'center', gap: 6 }}>
-              <Clock size={16} style={{ color: '#38bdf8' }} /> Current Active Regimen for {astronaut.name}
-            </h3>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
+              <Clock size={15} style={{ color: 'var(--cyan)' }} />
+              <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)' }}>
+                Active Regimen · {astronaut.name}
+              </span>
+            </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
               {astronaut.activeMedications.map(med => (
                 <div key={med.id} style={{
-                  background: 'var(--bg-surface)',
-                  border: '1px solid var(--border-subtle)',
-                  borderRadius: 6,
-                  padding: '10px 12px',
+                  background: 'linear-gradient(135deg, rgba(14,22,42,0.6) 0%, rgba(8,13,24,0.7) 100%)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  borderRadius: 'var(--radius-sm)',
+                  padding: '12px 14px',
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center'
                 }}>
                   <div>
-                    <div style={{ fontWeight: 600, color: '#ffffff', fontSize: 13 }}>
+                    <div style={{ fontWeight: 600, color: '#ffffff', fontSize: 13.5 }}>
                       {med.drugName} ({med.dose})
                     </div>
-                    <div style={{ fontSize: 11, color: 'var(--text-secondary)' }}>
+                    <div style={{ fontSize: 12, color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)', marginTop: 2 }}>
                       Schedule: {med.frequency}
                     </div>
                   </div>
-                  <span className={`status-badge ${med.isSedating ? 'yellow' : 'green'}`} style={{ fontSize: 10 }}>
-                    {med.isSedating ? 'Sedating' : 'Non-Sedating'}
+                  <span style={{
+                    fontSize: 10,
+                    fontFamily: 'var(--font-mono)',
+                    fontWeight: 700,
+                    padding: '3px 8px',
+                    borderRadius: 999,
+                    background: med.isSedating ? 'rgba(239, 68, 68, 0.15)' : 'rgba(52, 211, 153, 0.15)',
+                    color: med.isSedating ? '#fca5a5' : '#34d399',
+                    border: `1px solid ${med.isSedating ? 'rgba(239, 68, 68, 0.3)' : 'rgba(52, 211, 153, 0.3)'}`
+                  }}>
+                    {med.isSedating ? 'SEDATING' : 'NON-SEDATING'}
                   </span>
                 </div>
               ))}
@@ -274,14 +310,17 @@ export const MedicationScreen: React.FC<Props> = ({
 
           {/* Side-Effect Crew Check-in (Astronaut self-reporting) */}
           <div className="space-card">
-            <h3 style={{ fontSize: 15, fontWeight: 600, color: '#ffffff', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 6 }}>
-              <FileText size={16} style={{ color: '#10b981' }} /> Astronaut Daily Side-Effect Check-in
-            </h3>
-            <p style={{ fontSize: 12, color: 'var(--text-secondary)', marginBottom: 12 }}>
-              Quick self-assessment for next-day sedation, balance disturbances, or altered alertness.
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+              <FileText size={15} style={{ color: 'var(--emerald)' }} />
+              <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)' }}>
+                Subjective Symptoms & Adverse Reaction Check-in
+              </span>
+            </div>
+            <p style={{ fontSize: 12.5, color: 'var(--text-secondary)', marginBottom: 14 }}>
+              Next-day psychomotor vigilance assessment and vestibular disruption screening.
             </p>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginBottom: 14 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginBottom: 16 }}>
               {[
                 'Morning Grogginess / Hangover',
                 'Vestibular / Head Movement Dizziness',
@@ -296,14 +335,15 @@ export const MedicationScreen: React.FC<Props> = ({
                     key={symptom}
                     onClick={() => toggleSideEffect(symptom)}
                     style={{
-                      background: isSelected ? 'rgba(59, 130, 246, 0.2)' : 'var(--bg-surface)',
-                      border: `1px solid ${isSelected ? '#3b82f6' : 'var(--border-subtle)'}`,
-                      color: isSelected ? '#93c5fd' : 'var(--text-main)',
-                      padding: '8px 10px',
-                      borderRadius: 6,
-                      fontSize: 11,
+                      background: isSelected ? 'rgba(56, 189, 248, 0.18)' : 'rgba(8, 14, 26, 0.6)',
+                      border: `1px solid ${isSelected ? 'rgba(56, 189, 248, 0.45)' : 'rgba(255, 255, 255, 0.08)'}`,
+                      color: isSelected ? '#ffffff' : 'var(--text-secondary)',
+                      padding: '10px 12px',
+                      borderRadius: 'var(--radius-sm)',
+                      fontSize: 11.5,
                       textAlign: 'left',
-                      cursor: 'pointer'
+                      cursor: 'pointer',
+                      transition: 'all 0.15s ease'
                     }}
                   >
                     {isSelected ? '✓ ' : '+ '} {symptom}
@@ -314,10 +354,10 @@ export const MedicationScreen: React.FC<Props> = ({
 
             <button 
               className="btn-secondary" 
-              style={{ width: '100%', justifyContent: 'center' }}
+              style={{ width: '100%', justifyContent: 'center', borderRadius: 999 }}
               onClick={() => alert('Side-effect telemetry logged to Mission Control electronic health record (EHR).')}
             >
-              Submit Check-In to Flight Surgeon Log
+              Submit Check-In to EHR Log
             </button>
           </div>
         </div>
@@ -325,4 +365,3 @@ export const MedicationScreen: React.FC<Props> = ({
     </div>
   );
 };
-

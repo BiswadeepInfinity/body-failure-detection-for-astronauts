@@ -5,7 +5,8 @@ import {
   ShieldAlert, 
   MessageSquare, 
   Save, 
-  Clock
+  Clock,
+  Radio
 } from 'lucide-react';
 
 interface Props {
@@ -40,85 +41,142 @@ export const AlertsLogScreen: React.FC<Props> = ({ alerts, onUpdateAlertNote }) 
   };
 
   return (
-    <div>
-      {/* Header */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+      {/* Header with Space Avionics Styling */}
+      <div style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'flex-end',
+        flexWrap: 'wrap',
+        gap: 16,
+        paddingBottom: 16,
+        borderBottom: '1px solid rgba(56, 189, 248, 0.12)'
+      }}>
         <div>
-          <h2 style={{ fontSize: 20, fontWeight: 700, color: '#ffffff', display: 'flex', alignItems: 'center', gap: 10 }}>
-            <ShieldAlert size={22} style={{ color: '#f87171' }} /> Mission Control Clinical Alert Stream
-          </h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: 13 }}>
-            Continuous triage of biometrics, sleep deficits, drug interactions, and pharmacotherapy notes.
-          </p>
+          <div className="section-title">FLIGHT SURGEON TELEMETRY STREAM · CLINICAL TRIAGE</div>
+          <div className="section-subheading" style={{ marginTop: 4 }}>
+            Active Crew Health Alert Journal
+          </div>
+          <div style={{ color: 'var(--text-secondary)', fontSize: 13, marginTop: 4, fontFamily: 'var(--font-mono)' }}>
+            Continuous triage of biometrics, sleep deficits, drug interactions, and flight directives.
+          </div>
         </div>
 
-        {/* Severity Filter */}
-        <div style={{ display: 'flex', gap: 8 }}>
+        {/* Severity Filter Pills */}
+        <div style={{
+          display: 'flex',
+          gap: 6,
+          background: 'rgba(5, 8, 15, 0.75)',
+          padding: '6px',
+          borderRadius: 999,
+          border: '1px solid rgba(255, 255, 255, 0.1)'
+        }}>
           <button 
-            className={`btn-secondary ${filterLevel === 'all' ? 'active' : ''}`}
             onClick={() => setFilterLevel('all')}
-            style={{ background: filterLevel === 'all' ? 'var(--nasa-blue-light)' : undefined, color: filterLevel === 'all' ? '#fff' : undefined }}
+            style={{
+              background: filterLevel === 'all' ? 'rgba(56, 189, 248, 0.22)' : 'transparent',
+              color: filterLevel === 'all' ? '#ffffff' : 'var(--text-secondary)',
+              border: filterLevel === 'all' ? '1px solid rgba(56, 189, 248, 0.4)' : '1px solid transparent',
+              borderRadius: 999,
+              padding: '6px 14px',
+              fontSize: 12,
+              fontWeight: filterLevel === 'all' ? 700 : 500,
+              cursor: 'pointer',
+              fontFamily: 'var(--font-mono)'
+            }}
           >
-            All Alerts ({alerts.length})
+            ALL ALERTS ({alerts.length})
           </button>
           <button 
-            className={`btn-secondary ${filterLevel === 'red' ? 'active' : ''}`}
             onClick={() => setFilterLevel('red')}
-            style={{ background: filterLevel === 'red' ? 'rgba(239, 68, 68, 0.2)' : undefined, color: filterLevel === 'red' ? '#f87171' : undefined }}
+            style={{
+              background: filterLevel === 'red' ? 'rgba(239, 68, 68, 0.22)' : 'transparent',
+              color: filterLevel === 'red' ? '#f87171' : 'var(--text-secondary)',
+              border: filterLevel === 'red' ? '1px solid rgba(239, 68, 68, 0.4)' : '1px solid transparent',
+              borderRadius: 999,
+              padding: '6px 14px',
+              fontSize: 12,
+              fontWeight: filterLevel === 'red' ? 700 : 500,
+              cursor: 'pointer',
+              fontFamily: 'var(--font-mono)'
+            }}
           >
-            Critical Red Only ({alerts.filter(a => a.level === 'red').length})
+            CRITICAL ({alerts.filter(a => a.level === 'red').length})
           </button>
           <button 
-            className={`btn-secondary ${filterLevel === 'yellow' ? 'active' : ''}`}
             onClick={() => setFilterLevel('yellow')}
-            style={{ background: filterLevel === 'yellow' ? 'rgba(245, 158, 11, 0.2)' : undefined, color: filterLevel === 'yellow' ? '#fcd34d' : undefined }}
+            style={{
+              background: filterLevel === 'yellow' ? 'rgba(245, 158, 11, 0.22)' : 'transparent',
+              color: filterLevel === 'yellow' ? '#fcd34d' : 'var(--text-secondary)',
+              border: filterLevel === 'yellow' ? '1px solid rgba(245, 158, 11, 0.4)' : '1px solid transparent',
+              borderRadius: 999,
+              padding: '6px 14px',
+              fontSize: 12,
+              fontWeight: filterLevel === 'yellow' ? 700 : 500,
+              cursor: 'pointer',
+              fontFamily: 'var(--font-mono)'
+            }}
           >
-            Caution Yellow ({alerts.filter(a => a.level === 'yellow').length})
+            CAUTION ({alerts.filter(a => a.level === 'yellow').length})
           </button>
         </div>
       </div>
 
       {/* Alert Feed List */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
         {sortedAlerts.map(alert => (
           <div 
             key={alert.id}
             className={`alert-strip ${alert.level}`}
-            style={{ flexDirection: 'column', gap: 8, padding: 16 }}
+            style={{
+              flexDirection: 'column',
+              alignItems: 'stretch',
+              gap: 12,
+              padding: '18px 22px',
+              borderRadius: 'var(--radius-md)'
+            }}
           >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', flexWrap: 'wrap', gap: 10 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                 <StatusBadge level={alert.level} />
-                <strong style={{ fontSize: 14, color: alert.level === 'red' ? '#fca5a5' : '#fcd34d' }}>
+                <span style={{ fontSize: 15, fontWeight: 700, color: alert.level === 'red' ? '#fca5a5' : '#fcd34d' }}>
                   {alert.title}
-                </strong>
-                <span style={{ fontSize: 11, color: '#38bdf8', background: 'rgba(56, 189, 248, 0.15)', padding: '2px 8px', borderRadius: 4 }}>
+                </span>
+                <span style={{
+                  fontSize: 11,
+                  fontFamily: 'var(--font-mono)',
+                  color: '#38bdf8',
+                  background: 'rgba(56, 189, 248, 0.12)',
+                  border: '1px solid rgba(56, 189, 248, 0.25)',
+                  padding: '2px 10px',
+                  borderRadius: 999
+                }}>
                   {alert.astronautName}
                 </span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
-                <Clock size={12} /> {alert.timestamp}
+                <Clock size={13} /> {alert.timestamp}
               </div>
             </div>
 
-            {/* Plain one-line reason */}
-            <div style={{ fontSize: 13, color: '#ffffff', lineHeight: 1.4, margin: '4px 0' }}>
-              <strong>Clinical Context:</strong> {alert.reason}
+            {/* Clinical context */}
+            <div style={{ fontSize: 13.5, color: '#f1f5f9', lineHeight: 1.5 }}>
+              <span style={{ color: 'var(--cyan)', fontFamily: 'var(--font-mono)', fontWeight: 600 }}>CLINICAL CONTEXT: </span>
+              {alert.reason}
             </div>
 
             {/* Flight Surgeon Interactive Note Field */}
             <div style={{ 
-              background: 'rgba(0,0,0,0.3)', 
-              borderRadius: 6, 
-              padding: 10, 
-              marginTop: 4, 
-              border: '1px solid var(--border-subtle)',
+              background: 'rgba(6, 10, 20, 0.7)', 
+              borderRadius: 'var(--radius-sm)', 
+              padding: '12px 16px', 
+              border: '1px solid rgba(255, 255, 255, 0.08)',
               width: '100%'
             }}>
               {editingAlertId === alert.id ? (
                 <div>
-                  <label style={{ display: 'block', fontSize: 11, color: '#93c5fd', marginBottom: 4 }}>
-                    Update Flight Surgeon Clinical Directive / EHR Note:
+                  <label style={{ display: 'block', fontSize: 11.5, color: '#38bdf8', fontFamily: 'var(--font-mono)', marginBottom: 8, letterSpacing: '0.5px' }}>
+                    ENTER FLIGHT SURGEON CLINICAL DIRECTIVE / EHR RECORD:
                   </label>
                   <textarea
                     value={noteText}
@@ -126,39 +184,39 @@ export const AlertsLogScreen: React.FC<Props> = ({ alerts, onUpdateAlertNote }) 
                     rows={2}
                     style={{
                       width: '100%',
-                      background: 'var(--bg-surface)',
+                      background: 'rgba(11, 18, 32, 0.85)',
                       color: '#ffffff',
-                      border: '1px solid var(--border-focus)',
-                      borderRadius: 4,
-                      padding: 8,
-                      fontSize: 12,
+                      border: '1px solid rgba(56, 189, 248, 0.4)',
+                      borderRadius: 'var(--radius-sm)',
+                      padding: 10,
+                      fontSize: 13,
                       fontFamily: 'inherit',
-                      marginBottom: 8
+                      marginBottom: 10
                     }}
                   />
                   <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
-                    <button className="btn-secondary" onClick={() => setEditingAlertId(null)}>
+                    <button className="btn-secondary" style={{ padding: '6px 14px', fontSize: 12, borderRadius: 999 }} onClick={() => setEditingAlertId(null)}>
                       Cancel
                     </button>
-                    <button className="btn-primary" onClick={() => handleSaveNote(alert.id)}>
+                    <button className="btn-primary" style={{ padding: '6px 16px', fontSize: 12, borderRadius: 999 }} onClick={() => handleSaveNote(alert.id)}>
                       <Save size={13} /> Save Directive
                     </button>
                   </div>
                 </div>
               ) : (
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 12 }}>
-                    <MessageSquare size={14} style={{ color: '#38bdf8' }} />
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 10 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 13 }}>
+                    <Radio size={14} style={{ color: 'var(--cyan)' }} />
                     <span style={{ color: 'var(--text-secondary)' }}>
-                      Flight Surgeon Action: <strong style={{ color: '#e2e8f0' }}>{alert.flightSurgeonNote || 'No specific clinical action recorded.'}</strong>
+                      Flight Surgeon Action: <strong style={{ color: '#ffffff' }}>{alert.flightSurgeonNote || 'No specific clinical action recorded.'}</strong>
                     </span>
                   </div>
                   <button 
                     className="btn-secondary" 
-                    style={{ padding: '4px 8px', fontSize: 11 }}
+                    style={{ padding: '5px 12px', fontSize: 11.5, borderRadius: 999 }}
                     onClick={() => handleStartEdit(alert)}
                   >
-                    Edit Note
+                    Edit Directive
                   </button>
                 </div>
               )}
