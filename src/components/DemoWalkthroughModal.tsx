@@ -94,8 +94,7 @@ export const DemoWalkthroughModal: React.FC<Props> = ({ onStepChange, onClose })
       color: '#ffffff',
       display: 'flex',
       flexDirection: 'column',
-      gap: 16,
-      animation: 'fadeInUp 0.25s cubic-bezier(0.16, 1, 0.3, 1)'
+      gap: 16
     }}>
       {/* Top Header Row with Step Counter & Dismiss */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
