@@ -15,6 +15,7 @@ import { SettingsModal } from './components/SettingsModal';
 import { DemoWalkthroughModal } from './components/DemoWalkthroughModal';
 import { MLModelDebugger } from './components/MLModelDebugger';
 import { ScientistProfilePortal } from './components/ScientistProfilePortal';
+import { DeepSpaceBackground } from './components/DeepSpaceBackground';
 
 import { 
   Users, 
@@ -122,9 +123,12 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="app-container">
+    <div className="app-container" style={{ position: 'relative', overflowX: 'hidden' }}>
+      {/* Immersive Deep Space Ambient Canvas */}
+      <DeepSpaceBackground />
+
       {/* Top Header Navbar */}
-      <header className="top-nav" style={{ padding: '12px 24px', borderBottom: '1px solid var(--border-subtle)' }}>
+      <header className="top-nav" style={{ position: 'relative', zIndex: 10, padding: '12px 24px', borderBottom: '1px solid var(--border-subtle)' }}>
         <div className="brand-section" style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
           <div className="nasa-meatball" style={{ fontWeight: 800, letterSpacing: 1 }}>NASA</div>
           <div className="app-title-group">
@@ -440,7 +444,7 @@ export const App: React.FC = () => {
       )}
 
       {/* Main Viewport Content */}
-      <main className="main-viewport" style={{ padding: '24px' }}>
+      <main className="main-viewport" style={{ position: 'relative', zIndex: 1, padding: '24px' }}>
         {astronauts.length === 0 ? (
           <div style={{ textAlign: 'center', padding: 60, color: 'var(--text-secondary)' }}>
             Loading empirical telemetry streams and calculating multi-axial baselines...
