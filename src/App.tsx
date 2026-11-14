@@ -186,15 +186,16 @@ export const App: React.FC = () => {
           </div>
         </div>
 
-        {/* Central Integrated Navigation Pills */}
+        {/* Central Integrated Navigation Pills - Generously Sized for Easy Reading */}
         <nav style={{
           display: 'flex',
           alignItems: 'center',
-          gap: 4,
-          background: 'rgba(5, 8, 15, 0.65)',
-          padding: 4,
+          gap: 8,
+          background: 'rgba(5, 8, 15, 0.75)',
+          padding: '6px 8px',
           borderRadius: 999,
-          border: '1px solid rgba(255, 255, 255, 0.08)'
+          border: '1px solid rgba(255, 255, 255, 0.12)',
+          boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.08)'
         }}>
           {/* Tab 1 */}
           <button
@@ -203,21 +204,22 @@ export const App: React.FC = () => {
               setDetailViewAstroId(null);
             }}
             style={{
-              background: activeSection === 'crew_health' ? 'rgba(56, 189, 248, 0.16)' : 'transparent',
-              color: activeSection === 'crew_health' ? '#ffffff' : 'var(--text-secondary)',
-              border: activeSection === 'crew_health' ? '1px solid rgba(56, 189, 248, 0.35)' : '1px solid transparent',
+              background: activeSection === 'crew_health' ? 'rgba(56, 189, 248, 0.22)' : 'transparent',
+              color: activeSection === 'crew_health' ? '#ffffff' : '#cbd5e1',
+              border: activeSection === 'crew_health' ? '1px solid rgba(56, 189, 248, 0.45)' : '1px solid transparent',
               borderRadius: 999,
-              padding: '6px 14px',
-              fontSize: 13,
-              fontWeight: activeSection === 'crew_health' ? 600 : 400,
+              padding: '10px 20px',
+              fontSize: 15,
+              fontWeight: activeSection === 'crew_health' ? 700 : 500,
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: 6,
+              gap: 8,
+              boxShadow: activeSection === 'crew_health' ? '0 0 16px rgba(56, 189, 248, 0.25)' : 'none',
               transition: 'all 0.15s ease'
             }}
           >
-            <Users size={14} style={{ color: activeSection === 'crew_health' ? '#38bdf8' : 'inherit' }} />
+            <Users size={17} style={{ color: activeSection === 'crew_health' ? '#38bdf8' : 'inherit' }} />
             <span>Mission Control</span>
           </button>
 
@@ -225,21 +227,22 @@ export const App: React.FC = () => {
           <button
             onClick={() => setActiveSection('scientist_portal')}
             style={{
-              background: activeSection === 'scientist_portal' ? 'rgba(56, 189, 248, 0.16)' : 'transparent',
-              color: activeSection === 'scientist_portal' ? '#ffffff' : 'var(--text-secondary)',
-              border: activeSection === 'scientist_portal' ? '1px solid rgba(56, 189, 248, 0.35)' : '1px solid transparent',
+              background: activeSection === 'scientist_portal' ? 'rgba(56, 189, 248, 0.22)' : 'transparent',
+              color: activeSection === 'scientist_portal' ? '#ffffff' : '#cbd5e1',
+              border: activeSection === 'scientist_portal' ? '1px solid rgba(56, 189, 248, 0.45)' : '1px solid transparent',
               borderRadius: 999,
-              padding: '6px 14px',
-              fontSize: 13,
-              fontWeight: activeSection === 'scientist_portal' ? 600 : 400,
+              padding: '10px 20px',
+              fontSize: 15,
+              fontWeight: activeSection === 'scientist_portal' ? 700 : 500,
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: 6,
+              gap: 8,
+              boxShadow: activeSection === 'scientist_portal' ? '0 0 16px rgba(56, 189, 248, 0.25)' : 'none',
               transition: 'all 0.15s ease'
             }}
           >
-            <Calendar size={14} style={{ color: activeSection === 'scientist_portal' ? '#38bdf8' : 'inherit' }} />
+            <Calendar size={17} style={{ color: activeSection === 'scientist_portal' ? '#38bdf8' : 'inherit' }} />
             <span>Scientist Profiles</span>
           </button>
 
@@ -247,21 +250,22 @@ export const App: React.FC = () => {
           <button
             onClick={() => setActiveSection('predictive_intelligence')}
             style={{
-              background: activeSection === 'predictive_intelligence' ? 'rgba(168, 85, 247, 0.18)' : 'transparent',
-              color: activeSection === 'predictive_intelligence' ? '#ffffff' : 'var(--text-secondary)',
-              border: activeSection === 'predictive_intelligence' ? '1px solid rgba(168, 85, 247, 0.4)' : '1px solid transparent',
+              background: activeSection === 'predictive_intelligence' ? 'rgba(168, 85, 247, 0.25)' : 'transparent',
+              color: activeSection === 'predictive_intelligence' ? '#ffffff' : '#cbd5e1',
+              border: activeSection === 'predictive_intelligence' ? '1px solid rgba(168, 85, 247, 0.5)' : '1px solid transparent',
               borderRadius: 999,
-              padding: '6px 14px',
-              fontSize: 13,
-              fontWeight: activeSection === 'predictive_intelligence' ? 600 : 400,
+              padding: '10px 20px',
+              fontSize: 15,
+              fontWeight: activeSection === 'predictive_intelligence' ? 700 : 500,
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: 6,
+              gap: 8,
+              boxShadow: activeSection === 'predictive_intelligence' ? '0 0 16px rgba(168, 85, 247, 0.3)' : 'none',
               transition: 'all 0.15s ease'
             }}
           >
-            <Activity size={14} style={{ color: activeSection === 'predictive_intelligence' ? '#c084fc' : 'inherit' }} />
+            <Activity size={17} style={{ color: activeSection === 'predictive_intelligence' ? '#c084fc' : 'inherit' }} />
             <span>Adaptive AI</span>
           </button>
 
@@ -269,21 +273,22 @@ export const App: React.FC = () => {
           <button
             onClick={() => setActiveSection('pharmacology')}
             style={{
-              background: activeSection === 'pharmacology' ? 'rgba(56, 189, 248, 0.16)' : 'transparent',
-              color: activeSection === 'pharmacology' ? '#ffffff' : 'var(--text-secondary)',
-              border: activeSection === 'pharmacology' ? '1px solid rgba(56, 189, 248, 0.35)' : '1px solid transparent',
+              background: activeSection === 'pharmacology' ? 'rgba(56, 189, 248, 0.22)' : 'transparent',
+              color: activeSection === 'pharmacology' ? '#ffffff' : '#cbd5e1',
+              border: activeSection === 'pharmacology' ? '1px solid rgba(56, 189, 248, 0.45)' : '1px solid transparent',
               borderRadius: 999,
-              padding: '6px 14px',
-              fontSize: 13,
-              fontWeight: activeSection === 'pharmacology' ? 600 : 400,
+              padding: '10px 20px',
+              fontSize: 15,
+              fontWeight: activeSection === 'pharmacology' ? 700 : 500,
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: 6,
+              gap: 8,
+              boxShadow: activeSection === 'pharmacology' ? '0 0 16px rgba(56, 189, 248, 0.25)' : 'none',
               transition: 'all 0.15s ease'
             }}
           >
-            <Pill size={14} style={{ color: activeSection === 'pharmacology' ? '#38bdf8' : 'inherit' }} />
+            <Pill size={17} style={{ color: activeSection === 'pharmacology' ? '#38bdf8' : 'inherit' }} />
             <span>Pharmacology</span>
           </button>
 
@@ -291,30 +296,31 @@ export const App: React.FC = () => {
           <button
             onClick={() => setActiveSection('alerts_log')}
             style={{
-              background: activeSection === 'alerts_log' ? 'rgba(248, 113, 113, 0.16)' : 'transparent',
-              color: activeSection === 'alerts_log' ? '#ffffff' : 'var(--text-secondary)',
-              border: activeSection === 'alerts_log' ? '1px solid rgba(248, 113, 113, 0.4)' : '1px solid transparent',
+              background: activeSection === 'alerts_log' ? 'rgba(248, 113, 113, 0.22)' : 'transparent',
+              color: activeSection === 'alerts_log' ? '#ffffff' : '#cbd5e1',
+              border: activeSection === 'alerts_log' ? '1px solid rgba(248, 113, 113, 0.5)' : '1px solid transparent',
               borderRadius: 999,
-              padding: '6px 14px',
-              fontSize: 13,
-              fontWeight: activeSection === 'alerts_log' ? 600 : 400,
+              padding: '10px 20px',
+              fontSize: 15,
+              fontWeight: activeSection === 'alerts_log' ? 700 : 500,
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: 6,
+              gap: 8,
+              boxShadow: activeSection === 'alerts_log' ? '0 0 16px rgba(248, 113, 113, 0.3)' : 'none',
               transition: 'all 0.15s ease'
             }}
           >
-            <Bell size={14} style={{ color: activeSection === 'alerts_log' ? '#f87171' : 'inherit' }} />
+            <Bell size={17} style={{ color: activeSection === 'alerts_log' ? '#f87171' : 'inherit' }} />
             <span>Alerts</span>
             {allAlerts.length > 0 && (
               <span style={{
                 background: allAlerts.some(a => a.level === 'red') ? '#ef4444' : '#f59e0b',
                 color: '#ffffff',
-                fontSize: 10,
-                padding: '1px 6px',
+                fontSize: 11,
+                padding: '2px 8px',
                 borderRadius: 999,
-                fontWeight: 700
+                fontWeight: 800
               }}>
                 {allAlerts.length}
               </span>
@@ -325,21 +331,22 @@ export const App: React.FC = () => {
           <button
             onClick={() => setActiveSection('ml_debugger')}
             style={{
-              background: activeSection === 'ml_debugger' ? 'rgba(56, 189, 248, 0.16)' : 'transparent',
-              color: activeSection === 'ml_debugger' ? '#ffffff' : 'var(--text-secondary)',
-              border: activeSection === 'ml_debugger' ? '1px solid rgba(56, 189, 248, 0.35)' : '1px solid transparent',
+              background: activeSection === 'ml_debugger' ? 'rgba(56, 189, 248, 0.22)' : 'transparent',
+              color: activeSection === 'ml_debugger' ? '#ffffff' : '#cbd5e1',
+              border: activeSection === 'ml_debugger' ? '1px solid rgba(56, 189, 248, 0.45)' : '1px solid transparent',
               borderRadius: 999,
-              padding: '6px 14px',
-              fontSize: 13,
-              fontWeight: activeSection === 'ml_debugger' ? 600 : 400,
+              padding: '10px 20px',
+              fontSize: 15,
+              fontWeight: activeSection === 'ml_debugger' ? 700 : 500,
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: 6,
+              gap: 8,
+              boxShadow: activeSection === 'ml_debugger' ? '0 0 16px rgba(56, 189, 248, 0.25)' : 'none',
               transition: 'all 0.15s ease'
             }}
           >
-            <Binary size={14} style={{ color: activeSection === 'ml_debugger' ? '#38bdf8' : 'inherit' }} />
+            <Binary size={17} style={{ color: activeSection === 'ml_debugger' ? '#38bdf8' : 'inherit' }} />
             <span>Debugger</span>
           </button>
         </nav>
