@@ -71,28 +71,44 @@ export const DeepSpaceBackground: React.FC = () => {
       time += 0.01;
       ctx.clearRect(0, 0, width, height);
 
-      // 1. Distant Planet Glow (A calm, dark celestial body horizon on lower-right)
-      const planetX = width * 0.88;
-      const planetY = height * 0.92;
-      const planetRadius = width * 0.22;
-      const planetGrad = ctx.createRadialGradient(planetX, planetY, planetRadius * 0.2, planetX, planetY, planetRadius);
-      planetGrad.addColorStop(0, 'rgba(14, 30, 60, 0.28)');
-      planetGrad.addColorStop(0.6, 'rgba(30, 58, 138, 0.12)');
-      planetGrad.addColorStop(0.9, 'rgba(56, 189, 248, 0.08)');
-      planetGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      // 1. Distant Planet Glow — Earth limb from ISS orbital perspective
+      //    Lower-right quadrant, large partial arc visible through window
+      const planetX = width * 0.9;
+      const planetY = height * 1.02;
+      const planetRadius = width * 0.26;
+
+      // Deep ocean body gradient
+      const planetGrad = ctx.createRadialGradient(planetX, planetY, planetRadius * 0.1, planetX, planetY, planetRadius);
+      planetGrad.addColorStop(0,   'rgba(10, 24, 56, 0.35)');
+      planetGrad.addColorStop(0.55,'rgba(20, 50, 110, 0.18)');
+      planetGrad.addColorStop(0.82,'rgba(56, 189, 248, 0.10)');
+      planetGrad.addColorStop(0.95,'rgba(120, 210, 255, 0.06)');
+      planetGrad.addColorStop(1,   'rgba(0, 0, 0, 0)');
       ctx.fillStyle = planetGrad;
       ctx.beginPath();
       ctx.arc(planetX, planetY, planetRadius, 0, Math.PI * 2);
       ctx.fill();
 
-      // Atmospheric limb ring glow
+      // Atmospheric limb — thin bright rim of atmosphere
+      ctx.save();
       ctx.beginPath();
-      ctx.arc(planetX, planetY, planetRadius, Math.PI * 0.85, Math.PI * 1.6);
-      ctx.strokeStyle = 'rgba(56, 189, 248, 0.16)';
-      ctx.lineWidth = 3;
-      ctx.filter = 'blur(6px)';
+      ctx.arc(planetX, planetY, planetRadius * 0.97, Math.PI * 0.78, Math.PI * 1.5);
+      const limbGrad = ctx.createLinearGradient(planetX - planetRadius, planetY, planetX, planetY - planetRadius);
+      limbGrad.addColorStop(0, 'rgba(56, 189, 248, 0.0)');
+      limbGrad.addColorStop(0.4, 'rgba(100, 220, 255, 0.28)');
+      limbGrad.addColorStop(0.75, 'rgba(56, 189, 248, 0.18)');
+      limbGrad.addColorStop(1, 'rgba(56, 189, 248, 0.0)');
+      ctx.strokeStyle = limbGrad;
+      ctx.lineWidth = 2.5;
       ctx.stroke();
-      ctx.filter = 'none';
+      ctx.restore();
+
+      // Upper ISS viewport vignette — darker corners, instrument-panel feel
+      const topVig = ctx.createLinearGradient(0, 0, 0, height * 0.18);
+      topVig.addColorStop(0,   'rgba(2, 4, 9, 0.70)');
+      topVig.addColorStop(1,   'rgba(0, 0, 0, 0)');
+      ctx.fillStyle = topVig;
+      ctx.fillRect(0, 0, width, height * 0.18);
 
       // 2. Rich Deep Space Nebular Clouds
       const gradCyan = ctx.createRadialGradient(width * 0.15, height * 0.2, 20, width * 0.15, height * 0.2, width * 0.5);

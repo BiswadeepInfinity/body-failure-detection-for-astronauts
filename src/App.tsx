@@ -494,7 +494,7 @@ export const App: React.FC = () => {
       )}
 
       {/* Main Viewport Content */}
-      <main className="main-viewport" style={{ position: 'relative', zIndex: 1, padding: '24px' }}>
+      <main className="main-viewport" style={{ position: 'relative', zIndex: 1 }}>
         {astronauts.length === 0 ? (
           <div style={{ textAlign: 'center', padding: 60, color: 'var(--text-secondary)' }}>
             Loading empirical telemetry streams and calculating multi-axial baselines...
