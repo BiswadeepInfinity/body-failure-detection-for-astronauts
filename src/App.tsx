@@ -127,250 +127,228 @@ export const App: React.FC = () => {
       {/* Immersive Deep Space Ambient Canvas */}
       <DeepSpaceBackground />
 
-      {/* Unified Spacecraft Navigation Bar - Floating Frosted Glass Capsule */}
+      {/* Clean Aerospace Mission Header & Operations Bar */}
       <header style={{
         position: 'sticky',
-        top: 14,
+        top: 0,
         zIndex: 50,
-        margin: '14px 24px 0 24px',
-        background: 'linear-gradient(180deg, rgba(13, 20, 36, 0.78) 0%, rgba(7, 11, 22, 0.84) 100%)',
-        backdropFilter: 'blur(28px)',
-        WebkitBackdropFilter: 'blur(28px)',
-        border: '1px solid rgba(56, 189, 248, 0.16)',
-        borderRadius: 20,
-        boxShadow: '0 12px 36px rgba(0, 0, 0, 0.55), 0 0 24px rgba(56, 189, 248, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.12)',
-        padding: '10px 20px',
+        background: '#0b1324',
+        borderBottom: '1px solid #1e293b',
+        padding: '12px 32px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
         flexWrap: 'wrap',
         gap: 16
       }}>
-        {/* Brand / Logo Group */}
+        {/* Brand Group */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
           <div style={{
-            background: 'linear-gradient(135deg, #0b3d91 0%, #1e3a8a 100%)',
-            border: '1px solid rgba(147, 197, 253, 0.35)',
+            background: '#0284c7',
             color: '#ffffff',
             fontWeight: 800,
-            fontSize: 11.5,
-            letterSpacing: 2,
-            padding: '5px 12px',
-            borderRadius: 999,
-            boxShadow: '0 0 12px rgba(59, 130, 246, 0.35)'
+            fontSize: 12,
+            letterSpacing: '1.5px',
+            padding: '4px 10px',
+            borderRadius: 4
           }}>
             NASA
           </div>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <span style={{ fontSize: 14.5, fontWeight: 700, color: '#ffffff', letterSpacing: '0.4px' }}>
-                ASTRONAUT HEALTH & PHARMACOLOGY
+              <span style={{ fontSize: 14, fontWeight: 700, color: '#ffffff', letterSpacing: '0.3px' }}>
+                EXPEDITION 71 · BIOMONITOR & CLINICAL DECISION SUPPORT
               </span>
               <span style={{
-                background: 'rgba(56, 189, 248, 0.12)',
-                border: '1px solid rgba(56, 189, 248, 0.25)',
-                color: '#38bdf8',
+                background: '#1e293b',
+                border: '1px solid #334155',
+                color: '#94a3b8',
                 fontSize: 10,
-                fontWeight: 700,
-                padding: '2px 8px',
-                borderRadius: 999,
-                letterSpacing: 0.5
+                fontWeight: 600,
+                padding: '2px 6px',
+                borderRadius: 4
               }}>
                 EDGE N=1
               </span>
             </div>
-            <div style={{ fontSize: 11, color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: 6, marginTop: 1 }}>
-              <WifiOff size={11} style={{ color: '#38bdf8' }} />
-              <span>Offline Deep-Space Execution · Zero Ground Latency</span>
+            <div style={{ fontSize: 11, color: '#64748b', display: 'flex', alignItems: 'center', gap: 6, marginTop: 2, fontFamily: 'var(--font-mono)' }}>
+              <WifiOff size={11} style={{ color: '#0284c7' }} />
+              <span>Offline Edge Flight Operations · 0ms Latency</span>
             </div>
           </div>
         </div>
 
-        {/* Central Integrated Navigation Pills - Generously Sized for Easy Reading */}
+        {/* Central Tab Bar */}
         <nav style={{
           display: 'flex',
           alignItems: 'center',
-          gap: 8,
-          background: 'rgba(5, 8, 15, 0.75)',
-          padding: '6px 8px',
-          borderRadius: 999,
-          border: '1px solid rgba(255, 255, 255, 0.12)',
-          boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.08)'
+          gap: 4,
+          background: '#070b14',
+          padding: '4px',
+          borderRadius: 6,
+          border: '1px solid #1e293b'
         }}>
-          {/* Tab 1 */}
           <button
             onClick={() => {
               setActiveSection('crew_health');
               setDetailViewAstroId(null);
             }}
             style={{
-              background: activeSection === 'crew_health' ? 'rgba(56, 189, 248, 0.22)' : 'transparent',
-              color: activeSection === 'crew_health' ? '#ffffff' : '#cbd5e1',
-              border: activeSection === 'crew_health' ? '1px solid rgba(56, 189, 248, 0.45)' : '1px solid transparent',
-              borderRadius: 999,
-              padding: '10px 20px',
-              fontSize: 15,
-              fontWeight: activeSection === 'crew_health' ? 700 : 500,
+              background: activeSection === 'crew_health' ? '#0f172a' : 'transparent',
+              color: activeSection === 'crew_health' ? '#ffffff' : '#94a3b8',
+              border: activeSection === 'crew_health' ? '1px solid #334155' : '1px solid transparent',
+              borderRadius: 4,
+              padding: '7px 14px',
+              fontSize: 13,
+              fontWeight: activeSection === 'crew_health' ? 600 : 500,
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: 8,
-              boxShadow: activeSection === 'crew_health' ? '0 0 16px rgba(56, 189, 248, 0.25)' : 'none',
+              gap: 7,
               transition: 'all 0.15s ease'
             }}
           >
-            <Users size={17} style={{ color: activeSection === 'crew_health' ? '#38bdf8' : 'inherit' }} />
+            <Users size={14} style={{ color: activeSection === 'crew_health' ? '#38bdf8' : 'inherit' }} />
             <span>Mission Control</span>
           </button>
 
-          {/* Tab 2 */}
           <button
             onClick={() => setActiveSection('scientist_portal')}
             style={{
-              background: activeSection === 'scientist_portal' ? 'rgba(56, 189, 248, 0.22)' : 'transparent',
-              color: activeSection === 'scientist_portal' ? '#ffffff' : '#cbd5e1',
-              border: activeSection === 'scientist_portal' ? '1px solid rgba(56, 189, 248, 0.45)' : '1px solid transparent',
-              borderRadius: 999,
-              padding: '10px 20px',
-              fontSize: 15,
-              fontWeight: activeSection === 'scientist_portal' ? 700 : 500,
+              background: activeSection === 'scientist_portal' ? '#0f172a' : 'transparent',
+              color: activeSection === 'scientist_portal' ? '#ffffff' : '#94a3b8',
+              border: activeSection === 'scientist_portal' ? '1px solid #334155' : '1px solid transparent',
+              borderRadius: 4,
+              padding: '7px 14px',
+              fontSize: 13,
+              fontWeight: activeSection === 'scientist_portal' ? 600 : 500,
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: 8,
-              boxShadow: activeSection === 'scientist_portal' ? '0 0 16px rgba(56, 189, 248, 0.25)' : 'none',
+              gap: 7,
               transition: 'all 0.15s ease'
             }}
           >
-            <Calendar size={17} style={{ color: activeSection === 'scientist_portal' ? '#38bdf8' : 'inherit' }} />
+            <Calendar size={14} style={{ color: activeSection === 'scientist_portal' ? '#38bdf8' : 'inherit' }} />
             <span>Scientist Profiles</span>
           </button>
 
-          {/* Tab 3 */}
           <button
             onClick={() => setActiveSection('predictive_intelligence')}
             style={{
-              background: activeSection === 'predictive_intelligence' ? 'rgba(168, 85, 247, 0.25)' : 'transparent',
-              color: activeSection === 'predictive_intelligence' ? '#ffffff' : '#cbd5e1',
-              border: activeSection === 'predictive_intelligence' ? '1px solid rgba(168, 85, 247, 0.5)' : '1px solid transparent',
-              borderRadius: 999,
-              padding: '10px 20px',
-              fontSize: 15,
-              fontWeight: activeSection === 'predictive_intelligence' ? 700 : 500,
+              background: activeSection === 'predictive_intelligence' ? '#0f172a' : 'transparent',
+              color: activeSection === 'predictive_intelligence' ? '#ffffff' : '#94a3b8',
+              border: activeSection === 'predictive_intelligence' ? '1px solid #334155' : '1px solid transparent',
+              borderRadius: 4,
+              padding: '7px 14px',
+              fontSize: 13,
+              fontWeight: activeSection === 'predictive_intelligence' ? 600 : 500,
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: 8,
-              boxShadow: activeSection === 'predictive_intelligence' ? '0 0 16px rgba(168, 85, 247, 0.3)' : 'none',
+              gap: 7,
               transition: 'all 0.15s ease'
             }}
           >
-            <Activity size={17} style={{ color: activeSection === 'predictive_intelligence' ? '#c084fc' : 'inherit' }} />
+            <Activity size={14} style={{ color: activeSection === 'predictive_intelligence' ? '#38bdf8' : 'inherit' }} />
             <span>Adaptive AI</span>
           </button>
 
-          {/* Tab 4 */}
           <button
             onClick={() => setActiveSection('pharmacology')}
             style={{
-              background: activeSection === 'pharmacology' ? 'rgba(56, 189, 248, 0.22)' : 'transparent',
-              color: activeSection === 'pharmacology' ? '#ffffff' : '#cbd5e1',
-              border: activeSection === 'pharmacology' ? '1px solid rgba(56, 189, 248, 0.45)' : '1px solid transparent',
-              borderRadius: 999,
-              padding: '10px 20px',
-              fontSize: 15,
-              fontWeight: activeSection === 'pharmacology' ? 700 : 500,
+              background: activeSection === 'pharmacology' ? '#0f172a' : 'transparent',
+              color: activeSection === 'pharmacology' ? '#ffffff' : '#94a3b8',
+              border: activeSection === 'pharmacology' ? '1px solid #334155' : '1px solid transparent',
+              borderRadius: 4,
+              padding: '7px 14px',
+              fontSize: 13,
+              fontWeight: activeSection === 'pharmacology' ? 600 : 500,
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: 8,
-              boxShadow: activeSection === 'pharmacology' ? '0 0 16px rgba(56, 189, 248, 0.25)' : 'none',
+              gap: 7,
               transition: 'all 0.15s ease'
             }}
           >
-            <Pill size={17} style={{ color: activeSection === 'pharmacology' ? '#38bdf8' : 'inherit' }} />
+            <Pill size={14} style={{ color: activeSection === 'pharmacology' ? '#38bdf8' : 'inherit' }} />
             <span>Pharmacology</span>
           </button>
 
-          {/* Tab 5 */}
           <button
             onClick={() => setActiveSection('alerts_log')}
             style={{
-              background: activeSection === 'alerts_log' ? 'rgba(248, 113, 113, 0.22)' : 'transparent',
-              color: activeSection === 'alerts_log' ? '#ffffff' : '#cbd5e1',
-              border: activeSection === 'alerts_log' ? '1px solid rgba(248, 113, 113, 0.5)' : '1px solid transparent',
-              borderRadius: 999,
-              padding: '10px 20px',
-              fontSize: 15,
-              fontWeight: activeSection === 'alerts_log' ? 700 : 500,
+              background: activeSection === 'alerts_log' ? '#0f172a' : 'transparent',
+              color: activeSection === 'alerts_log' ? '#ffffff' : '#94a3b8',
+              border: activeSection === 'alerts_log' ? '1px solid #334155' : '1px solid transparent',
+              borderRadius: 4,
+              padding: '7px 14px',
+              fontSize: 13,
+              fontWeight: activeSection === 'alerts_log' ? 600 : 500,
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: 8,
-              boxShadow: activeSection === 'alerts_log' ? '0 0 16px rgba(248, 113, 113, 0.3)' : 'none',
+              gap: 7,
               transition: 'all 0.15s ease'
             }}
           >
-            <Bell size={17} style={{ color: activeSection === 'alerts_log' ? '#f87171' : 'inherit' }} />
+            <Bell size={14} style={{ color: activeSection === 'alerts_log' ? '#f87171' : 'inherit' }} />
             <span>Alerts</span>
             {allAlerts.length > 0 && (
               <span style={{
-                background: allAlerts.some(a => a.level === 'red') ? '#ef4444' : '#f59e0b',
+                background: allAlerts.some(a => a.level === 'red') ? '#ef4444' : '#d97706',
                 color: '#ffffff',
-                fontSize: 11,
-                padding: '2px 8px',
+                fontSize: 10,
+                padding: '1px 6px',
                 borderRadius: 999,
-                fontWeight: 800
+                fontWeight: 700
               }}>
                 {allAlerts.length}
               </span>
             )}
           </button>
 
-          {/* Tab 6 */}
           <button
             onClick={() => setActiveSection('ml_debugger')}
             style={{
-              background: activeSection === 'ml_debugger' ? 'rgba(56, 189, 248, 0.22)' : 'transparent',
-              color: activeSection === 'ml_debugger' ? '#ffffff' : '#cbd5e1',
-              border: activeSection === 'ml_debugger' ? '1px solid rgba(56, 189, 248, 0.45)' : '1px solid transparent',
-              borderRadius: 999,
-              padding: '10px 20px',
-              fontSize: 15,
-              fontWeight: activeSection === 'ml_debugger' ? 700 : 500,
+              background: activeSection === 'ml_debugger' ? '#0f172a' : 'transparent',
+              color: activeSection === 'ml_debugger' ? '#ffffff' : '#94a3b8',
+              border: activeSection === 'ml_debugger' ? '1px solid #334155' : '1px solid transparent',
+              borderRadius: 4,
+              padding: '7px 14px',
+              fontSize: 13,
+              fontWeight: activeSection === 'ml_debugger' ? 600 : 500,
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: 8,
-              boxShadow: activeSection === 'ml_debugger' ? '0 0 16px rgba(56, 189, 248, 0.25)' : 'none',
+              gap: 7,
               transition: 'all 0.15s ease'
             }}
           >
-            <Binary size={17} style={{ color: activeSection === 'ml_debugger' ? '#38bdf8' : 'inherit' }} />
+            <Binary size={14} style={{ color: activeSection === 'ml_debugger' ? '#38bdf8' : 'inherit' }} />
             <span>Debugger</span>
           </button>
         </nav>
 
         {/* Right Action Buttons */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <button 
             className="btn-primary" 
             style={{ 
-              background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)', 
-              color: '#000000', 
-              fontWeight: 700, 
-              padding: '7px 16px', 
-              fontSize: 12.5, 
-              borderRadius: 999, 
+              background: '#0284c7', 
+              color: '#ffffff', 
+              fontWeight: 600, 
+              padding: '6px 14px', 
+              fontSize: 12, 
+              borderRadius: 4, 
               display: 'flex', 
               alignItems: 'center', 
               gap: 6,
-              border: 'none',
-              boxShadow: '0 0 16px rgba(245, 158, 11, 0.35)'
+              border: '1px solid #0369a1'
             }}
             onClick={() => setShowDemoGuide(true)}
           >
-            <Play size={12} fill="#000" /> Guided Mission Script
+            <Play size={12} fill="#fff" /> Mission Script
           </button>
 
           <button 
@@ -378,10 +356,10 @@ export const App: React.FC = () => {
             onClick={() => setShowSettings(true)}
             title="Configure Clinical Thresholds"
             style={{ 
-              padding: '7px 10px', 
-              borderRadius: 999, 
-              background: 'rgba(255, 255, 255, 0.05)',
-              border: '1px solid rgba(255, 255, 255, 0.12)'
+              padding: '6px 10px', 
+              borderRadius: 4, 
+              background: '#1e293b',
+              border: '1px solid #334155'
             }}
           >
             <Sliders size={14} />
